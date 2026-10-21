@@ -30,7 +30,8 @@ const nonEmpty = (row) => row.filter((c) => clean(c) !== '').length
 
 function convert(name, rows) {
   rows = rows.filter((r) => nonEmpty(r) > 0)
-  if (!rows.length) return null
+  // the sheet lists the country but no universities yet: keep it, details on request
+  if (!rows.length) return { country: name, notes: ['University list and fees shared on request. Ask us for current options.'] }
 
   // Germany: an information sheet, not a table
   if (rows.every((r) => nonEmpty(r) === 1 && clean(r[0]))) {

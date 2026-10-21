@@ -1480,5 +1480,11 @@ export const mbbs = [
       ]
     ],
     "notes": []
+  },
+  {
+    "country": "Nepal",
+    "notes": [
+      "University list and fees shared on request. Ask us for current options."
+    ]
   }
 ]

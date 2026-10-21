@@ -1389,3 +1389,7 @@
     grid-template-columns: 1fr 1fr;
   }
 }
+
+.sv-mbbs { margin: 0 0 1.4rem; font-size: 0.95rem; line-height: 1.6; color: var(--muted); }
+.sv-mbbs strong { color: var(--ink); }
+.sv-mbbs a { color: var(--blue); text-decoration: underline; text-underline-offset: 3px; white-space: nowrap; }

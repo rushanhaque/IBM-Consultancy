@@ -1,6 +1,8 @@
 import { useRef } from 'react'
 import useReveal from '../hooks/useReveal'
+import { Link } from 'react-router-dom'
 import { photos, services } from '../data/site'
+import { mbbs } from '../data/mbbs'
 import Icon from '../components/Icon'
 import Button from '../components/Button'
 import Img from '../components/Img'
@@ -75,6 +77,12 @@ export default function Services() {
                     </li>
                   ))}
                 </ul>
+                {s.id === 'student' && (
+                  <p className="sv-mbbs" data-fade="">
+                    <strong>MBBS abroad:</strong> {mbbs.map((m) => m.country).join(' · ')}.{' '}
+                    <Link to="/mbbs-abroad">See universities &amp; fees</Link>
+                  </p>
+                )}
                 <div data-fade="">
                   <Button to={`/contact?topic=${s.id}`} variant="primary" className="btn-sm">
                     Enquire
