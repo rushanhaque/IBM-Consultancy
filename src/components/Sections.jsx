@@ -2,7 +2,7 @@ import { useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { gsap, intro, useGSAP } from '../lib/gsap'
 import { useApp } from '../lib/appContext'
-import { consultations, faqs, photos, waLink } from '../data/site'
+import { faqs, photos, waLink } from '../data/site'
 import Button from './Button'
 import Icon from './Icon'
 import Split from './Split'
@@ -90,54 +90,6 @@ export function PageHero({ eyebrow, title, text, image, imageAlt = '', children 
   )
 }
 
-export function Pricing({ heading = true }) {
-  return (
-    <section className="section pricing" id="consultations">
-      <div className="container">
-        {heading && (
-          <div className="section-head center">
-            <Eyebrow data-fade="">Consultations</Eyebrow>
-            <Split as="h2" text="Book an expert, *by the hour.*" className="h2" />
-            <p className="lead" data-fade="" data-delay="0.15">
-              Transparent, fixed-fee sessions. Walk in with questions — walk out with a clear plan.
-            </p>
-          </div>
-        )}
-        <div className="price-grid" data-stagger="">
-          {consultations.map((c) => (
-            <Spotlight key={c.id} className={`price-card ${c.featured ? 'is-featured beam' : ''}`} data-draw="">
-              {c.featured && <span className="price-badge">Most booked</span>}
-              <div className="price-top">
-                <span className="price-dur">
-                  <Icon name="clock" size={15} /> {c.duration}
-                </span>
-                <h3>{c.title}</h3>
-                <p>{c.desc}</p>
-              </div>
-              <div className="price-amount">
-                <span className="cur">₹</span>
-                {c.price.toLocaleString('en-IN')}
-                <span className="per">/ session</span>
-              </div>
-              <ul className="checks">
-                {c.points.map((p) => (
-                  <li key={p}>
-                    <Icon name="check" size={16} stroke={2} />
-                    {p}
-                  </li>
-                ))}
-              </ul>
-              <Button to={`/contact?service=${c.id}`} variant={c.featured ? 'light' : 'primary'} magnetic={false} className="btn-block">
-                Book this session
-              </Button>
-            </Spotlight>
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-}
-
 export function FAQ() {
   const [openIdx, setOpenIdx] = useState(0)
   return (
@@ -146,9 +98,6 @@ export function FAQ() {
         <div className="faq-side">
           <Eyebrow data-fade="">FAQ</Eyebrow>
           <Split as="h2" text="Answers, *before you ask.*" className="h2" />
-          <p className="lead" data-fade="" data-delay="0.1">
-            Still unsure? Our team replies on WhatsApp within working hours.
-          </p>
           <div data-fade="" data-delay="0.2">
             <Button href={waLink('Hello IBM Consultancy, I have a question.')} variant="ghost" icon="whatsapp">
               Ask on WhatsApp
@@ -219,10 +168,7 @@ export function CTA() {
               <span className="cta-line">Ready when</span>
               <span className="cta-line em">you are.</span>
             </h2>
-            <p>
-              One conversation is all it takes to know exactly what you need. Book a consultation or drop us a message —
-              we’ll take it from there.
-            </p>
+            <p>Tell us where you’re headed. We’ll handle the rest.</p>
             <div className="cta-actions">
               <Button to="/contact" variant="light">
                 Book a consultation

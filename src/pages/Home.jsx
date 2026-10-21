@@ -11,7 +11,7 @@ import Split from '../components/Split'
 import Marquee from '../components/Marquee'
 import Img from '../components/Img'
 import Deferred from '../components/Deferred'
-import { CTA, Eyebrow, Pricing, Spotlight } from '../components/Sections'
+import { CTA, Eyebrow, Spotlight } from '../components/Sections'
 
 const PLANE = 'M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z'
 
@@ -123,8 +123,7 @@ function Hero() {
             Passports &amp; visas, <em>handled with precision.</em>
           </h1>
           <p className="hero-sub lead">
-            Fast, transparent passport and visa services for business travellers, students and families — from your
-            first consultation to the moment your passport is back in your hands.
+            For students, families and business travellers.
           </p>
           <div className="hero-actions">
             <Button to="/contact">Book a consultation</Button>
@@ -323,10 +322,10 @@ function WindowReveal() {
 /* -------------------------------------------------------------------------- */
 
 const STATEMENT = [
-  'We are a Delhi-based', { img: photos.indiaGate, alt: 'India Gate, New Delhi' },
-  'immigration and visa consultancy helping expatriates, students', { img: photos.graduation, alt: 'Graduates' },
-  'and business travellers', { img: photos.lounge, alt: 'Business traveller' },
-  'cross borders with less stress — through meticulous paperwork, honest guidance and a team that actually picks up when you call.',
+  'A Delhi team', { img: photos.indiaGate, alt: 'India Gate, New Delhi' },
+  'helping students', { img: photos.graduation, alt: 'Graduates' },
+  'and travellers', { img: photos.lounge, alt: 'Business traveller' },
+  'cross borders, without the stress.',
 ]
 
 function Intro() {
@@ -423,7 +422,6 @@ function ServicesRail() {
           <Split as="h2" className="h2" text="Every document, *every destination.*" />
         </div>
         <div className="rail-meta" data-fade="" data-delay="0.15">
-          <p>Eight travel and visa services, one accountable team. Pick what you need — or let us map it for you.</p>
           <div className="rail-progress">
             <i />
           </div>
@@ -465,9 +463,9 @@ function ServicesRail() {
           <h3>
             Not sure <em>where to start?</em>
           </h3>
-          <p>Book a one-hour Travel Document Consultation and leave with a personalised plan.</p>
-          <Button to="/contact?service=travel-document" variant="light" magnetic={false}>
-            Book for ₹1,500
+          <p>Tell us your plans. We’ll map the right route.</p>
+          <Button to="/contact" variant="light" magnetic={false}>
+            Talk to us
           </Button>
         </div>
       </div>
@@ -511,9 +509,6 @@ function Process() {
           <div className="proc-sticky">
             <Eyebrow data-fade="">How it works</Eyebrow>
             <Split as="h2" className="h2" text="From first call *to boarding gate.*" />
-            <p className="lead" data-fade="" data-delay="0.1">
-              A clear four-step process with one point of contact — so you always know what happens next.
-            </p>
             <div className="proc-media" aria-hidden="true">
               {process.map((p, i) => (
                 <div key={p.title} className={`proc-shot ${i === active ? 'is-on' : ''} ${i < active ? 'is-past' : ''}`}>
@@ -598,9 +593,6 @@ function Destinations() {
             <Eyebrow data-fade="">Destinations</Eyebrow>
             <Split as="h2" className="h2" text="Where we *take you.*" />
           </div>
-          <p className="lead" data-fade="" data-delay="0.1">
-            Country-specific expertise for the destinations our clients travel to most — and many more on request.
-          </p>
         </div>
 
         <div className="dest-board-head" aria-hidden="true">
@@ -796,9 +788,6 @@ export default function Home() {
       </Deferred>
       <Deferred>
         <Ribbon />
-      </Deferred>
-      <Deferred minHeight="120vh">
-        <Pricing />
       </Deferred>
       <Deferred minHeight="80vh">
         <Testimonials />

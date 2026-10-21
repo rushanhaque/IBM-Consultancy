@@ -52,8 +52,7 @@ export default function Footer() {
           <div className="footer-intro">
             <img src="/logo-320.webp" loading="lazy" decoding="async" alt="IBM Consultancy — Immigration & Visa Services" className="footer-logo" width="160" height="143" />
             <p>
-              Fast, transparent passport and visa services for business travellers, students and families — from Delhi to
-              the world.
+              Visas, passports and travel, from Delhi to the world.
             </p>
             <a className="footer-wa" href={waLink()} target="_blank" rel="noreferrer">
               <Icon name="whatsapp" size={18} /> Message us on WhatsApp

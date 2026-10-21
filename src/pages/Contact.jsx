@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import useReveal from '../hooks/useReveal'
-import { company, consultations, hours, services, waLink } from '../data/site'
+import { company, hours, services, waLink } from '../data/site'
 import Icon from '../components/Icon'
 import Button from '../components/Button'
 import { Eyebrow, PageHero, Spotlight } from '../components/Sections'
@@ -30,7 +30,6 @@ export default function Contact() {
   const { idx, open } = useOpenStatus()
 
   const options = [
-    ...consultations.map((c) => ({ value: c.id, label: `${c.title} — ₹${c.price.toLocaleString('en-IN')}` })),
     ...services.map((s) => ({ value: s.id, label: s.title })),
     { value: 'other', label: 'Something else' },
   ]
@@ -112,7 +111,7 @@ export default function Contact() {
       <PageHero
         eyebrow="Contact & booking"
         title="Let’s plan *your next move.*"
-        text="Book a consultation, ask a question, or simply drop by. We usually reply on WhatsApp within working hours."
+        text="We usually reply on WhatsApp within working hours."
       />
 
       <section className="section contact">
@@ -148,20 +147,11 @@ export default function Contact() {
                   <Field label="Service" error={errors.service} wide select filled={!!form.service}>
                     <select value={form.service} onChange={set('service')}>
                       <option value="" disabled hidden />
-                      <optgroup label="Consultations">
-                        {options.slice(0, consultations.length).map((o) => (
-                          <option key={o.value} value={o.value}>
-                            {o.label}
-                          </option>
-                        ))}
-                      </optgroup>
-                      <optgroup label="Services">
-                        {options.slice(consultations.length).map((o) => (
-                          <option key={o.value} value={o.value}>
-                            {o.label}
-                          </option>
-                        ))}
-                      </optgroup>
+                      {options.map((o) => (
+                        <option key={o.value} value={o.value}>
+                          {o.label}
+                        </option>
+                      ))}
                     </select>
                   </Field>
                   <Field label="Destination country (optional)">

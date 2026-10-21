@@ -5,7 +5,7 @@ import Icon from '../components/Icon'
 import Button from '../components/Button'
 import Img from '../components/Img'
 import Deferred from '../components/Deferred'
-import { CTA, FAQ, PageHero, Pricing } from '../components/Sections'
+import { CTA, FAQ, PageHero } from '../components/Sections'
 
 export default function Services() {
   const ref = useRef(null)
@@ -16,7 +16,7 @@ export default function Services() {
       <PageHero
         eyebrow="Our services"
         title="Services built around *your journey.*"
-        text="Whether it’s a passport renewal, a holiday visa or a move abroad, we handle the paperwork with precision — so you can focus on where you’re going."
+        text="Eight services. One team. Zero paperwork stress."
         image={photos.tarmac}
         imageAlt="Aircraft on an airport apron at dusk"
       >
@@ -67,11 +67,7 @@ export default function Services() {
                 <p className="lead" data-fade="" data-delay="0.05">
                   {s.long}
                 </p>
-                <div className="sv-hr" data-line="" />
-                <h4 className="sv-sub" data-fade="">
-                  What’s included
-                </h4>
-                <ul className="checks two" data-stagger="">
+                <ul className="checks" data-stagger="">
                   {s.includes.map((x) => (
                     <li key={x}>
                       <Icon name="check" size={16} stroke={2} />
@@ -79,11 +75,7 @@ export default function Services() {
                     </li>
                   ))}
                 </ul>
-                <div className="sv-foot" data-fade="">
-                  <span>
-                    <small>Ideal for</small>
-                    {s.ideal}
-                  </span>
+                <div data-fade="">
                   <Button to={`/contact?topic=${s.id}`} variant="primary" className="btn-sm">
                     Enquire
                   </Button>
@@ -94,9 +86,6 @@ export default function Services() {
         </div>
       </section>
 
-      <Deferred minHeight="120vh">
-        <Pricing />
-      </Deferred>
       <Deferred minHeight="120vh">
         <FAQ />
       </Deferred>

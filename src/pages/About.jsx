@@ -10,17 +10,17 @@ import Deferred from '../components/Deferred'
 import { CTA, Eyebrow, PageHero, Spotlight } from '../components/Sections'
 
 const values = [
-  { icon: 'eye', title: 'Precision', text: 'Every form, date and signature checked twice. Small errors cause big delays — we don’t let them through.' },
-  { icon: 'shield', title: 'Transparency', text: 'Fixed consultation fees, honest eligibility advice and no promises we can’t keep.' },
-  { icon: 'bolt', title: 'Speed', text: 'Express and Tatkaal workflows built for travellers who can’t afford to wait.' },
-  { icon: 'heart', title: 'Care', text: 'One dedicated contact who knows your file — and answers when you call.' },
+  { icon: 'eye', title: 'Precision', text: 'Every detail checked twice.' },
+  { icon: 'shield', title: 'Transparency', text: 'Honest advice, no false promises.' },
+  { icon: 'bolt', title: 'Speed', text: 'Express routes when time is short.' },
+  { icon: 'heart', title: 'Care', text: 'One contact who knows your file.' },
 ]
 
 const reasons = [
-  ['Embassy-ready files', 'Applications assembled to each embassy’s published requirements and our own review checklist.'],
-  ['One point of contact', 'A dedicated case manager from first call to passport collection — no call-centre hand-offs.'],
-  ['Clear, fixed fees', 'Know the consultation cost upfront, before any work begins.'],
-  ['In person or remote', 'Visit our Yamuna Vihar office or consult over phone and WhatsApp — whichever suits you.'],
+  ['Embassy-ready files', 'Built to each embassy’s requirements.'],
+  ['One point of contact', 'From first call to collection.'],
+  ['Clear from day one', 'You know the plan before we start.'],
+  ['In person or remote', 'Office, phone or WhatsApp.'],
 ]
 
 export default function About() {
@@ -32,7 +32,7 @@ export default function About() {
       <PageHero
         eyebrow="About IBM Consultancy"
         title="Clarity at *every border.*"
-        text="A Delhi-based immigration and visa consultancy built on a simple belief: travel paperwork should feel effortless, not overwhelming."
+        text="Travel paperwork should feel effortless."
         image={photos.indiaGate}
         imageAlt="India Gate, New Delhi, at dusk"
       />
@@ -61,18 +61,8 @@ export default function About() {
             <Eyebrow data-fade="">Our story</Eyebrow>
             <Split as="h2" className="h2" text="Streamlined travel *document assistance.*" />
             <p className="lead" data-fade="">
-              IBM Consultancy offers comprehensive passport and visa services tailored for expatriates, students and
-              business travellers. Our team ensures a hassle-free application process, saving you time and effort.
-            </p>
-            <p data-fade="" data-delay="0.05">
-              We started with a simple observation: most visa delays and rejections come down to avoidable mistakes —
-              a missing document, an inconsistent date, a cover letter that doesn’t answer the right question. So we
-              built our practice around getting the details right, explaining every step in plain language, and staying
-              reachable throughout.
-            </p>
-            <p data-fade="" data-delay="0.1">
-              Today we help travellers with everything from Tatkaal passport renewals to student visas and permanent
-              residency pathways — handling your travel documentation with precision and efficiency.
+              Most visa delays come from small, avoidable mistakes. We get the details right, explain every step
+              simply, and stay reachable throughout.
             </p>
           </div>
         </div>
@@ -141,7 +131,6 @@ export default function About() {
               <div className="visit-body">
                 <Eyebrow>Visit us</Eyebrow>
                 <h3 className="h3">Better yet, see us in person.</h3>
-                <p>We love meeting our clients — feel free to visit during normal business hours.</p>
                 <div className="visit-info">
                   <p>
                     <Icon name="pin" size={18} />
