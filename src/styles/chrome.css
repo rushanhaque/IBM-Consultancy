@@ -179,10 +179,6 @@
   transition: transform 0.7s var(--ease);
 }
 
-.nav.is-hidden {
-  transform: translateY(-130%);
-}
-
 .nav-inner {
   max-width: calc(var(--container) - 2 * var(--gutter) + 24px);
   margin-inline: auto;

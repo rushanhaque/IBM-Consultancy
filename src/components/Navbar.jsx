@@ -20,7 +20,6 @@ export function Brand({ light = false }) {
 export default function Navbar() {
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
-  const [hidden, setHidden] = useState(false)
   const menuRef = useRef(null)
   const tl = useRef(null)
   const linksRef = useRef(null)
@@ -47,14 +46,8 @@ export default function Navbar() {
   }, [pathname])
 
   useEffect(() => {
-    let last = 0
-    const onScroll = () => {
-      const y = window.scrollY
-      setScrolled(y > 40)
-      setHidden(y > 300 && y > last + 2)
-      if (y < last - 2) setHidden(false)
-      last = y
-    }
+    // the header stays put; scrolling only toggles its compact background
+    const onScroll = () => setScrolled(window.scrollY > 40)
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
@@ -86,7 +79,7 @@ export default function Navbar() {
 
   return (
     <>
-      <header className={`nav ${scrolled ? 'is-scrolled' : ''} ${hidden && !open ? 'is-hidden' : ''} ${open ? 'is-open' : ''}`}>
+      <header className={`nav ${scrolled ? 'is-scrolled' : ''} ${open ? 'is-open' : ''}`}>
         <div className="nav-inner">
           <Brand />
           <nav className="nav-links" aria-label="Primary" ref={linksRef} onMouseLeave={toActive}>
