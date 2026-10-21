@@ -41,6 +41,7 @@ export const photos = {
 
 export const company = {
   name: 'IBM Consultancy',
+  ceo: 'Abdul Rehman',
   tagline: 'Immigration & Visa Services',
   phone: '+91 93112 76037',
   phoneHref: 'tel:+919311276037',
@@ -66,6 +67,7 @@ export const hours = [
 export const nav = [
   { to: '/', label: 'Home' },
   { to: '/services', label: 'Services' },
+  { to: '/mbbs-abroad', label: 'MBBS Abroad' },
   { to: '/about', label: 'About' },
   { to: '/contact', label: 'Contact' },
 ]

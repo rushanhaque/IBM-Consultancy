@@ -38,7 +38,7 @@ export default function Footer() {
 
         <div className="footer-bottom">
           <span>
-            © {year} {company.name}
+            © {year} {company.name} · CEO: {company.ceo}
           </span>
           <span className="footer-address">{company.address.join(', ')}</span>
           <button className="to-top" onClick={() => window.__lenis?.scrollTo(0, { duration: 1.4 })}>

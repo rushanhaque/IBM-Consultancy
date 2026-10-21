@@ -1175,3 +1175,217 @@
 .contact-page .ph-extra {
   margin-top: 18px;
 }
+
+.story-ceo {
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.story-ceo strong {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+/* ---------- MBBS Abroad ---------- */
+
+.mbbs {
+  padding-top: 0;
+}
+
+.mbbs-tabs {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding: 2px 2px 14px;
+  margin: 0 calc(-1 * var(--gutter));
+  padding-inline: var(--gutter);
+}
+
+.mbbs-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.mbbs-tabs .chip {
+  flex: none;
+}
+
+.mbbs-tabs .chip.is-active {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: #fff;
+}
+
+.mbbs-count {
+  display: inline-grid;
+  place-items: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  border-radius: 999px;
+  background: rgba(10, 10, 12, 0.07);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.chip.is-active .mbbs-count {
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.mbbs-panel {
+  margin-top: 18px;
+  padding: 22px 18px;
+  border-radius: 26px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-sm);
+  animation: mbbsIn 0.5s var(--ease);
+}
+
+@keyframes mbbsIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+
+.mbbs-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.mbbs-notes {
+  display: grid;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.mbbs-notes li {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  font-size: 14px;
+  color: var(--ink-2);
+}
+
+.mbbs-notes svg {
+  flex: none;
+  margin-top: 3px;
+  color: var(--blue);
+}
+
+.mbbs-table-wrap {
+  margin-top: 20px;
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.mbbs-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13.5px;
+}
+
+.mbbs-table th,
+.mbbs-table td {
+  padding: 12px 14px;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--line);
+}
+
+.mbbs-table thead th {
+  position: sticky;
+  top: 0;
+  background: var(--bg-2);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.mbbs-table td {
+  color: var(--ink-2);
+  white-space: nowrap;
+}
+
+/* university names stay pinned while the fee columns scroll on phones */
+.mbbs-table tbody th {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  min-width: 170px;
+  max-width: 240px;
+  background: var(--paper);
+  font-weight: 600;
+  color: var(--ink);
+  box-shadow: 1px 0 0 var(--line);
+}
+
+.mbbs-table thead th:first-child {
+  position: sticky;
+  left: 0;
+  z-index: 2;
+}
+
+.mbbs-table tbody tr:last-child th,
+.mbbs-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.mbbs-table tbody tr:hover th,
+.mbbs-table tbody tr:hover td {
+  background: var(--bg);
+}
+
+.mbbs-guide {
+  display: grid;
+  gap: 18px;
+  margin-top: 20px;
+}
+
+.mbbs-guide-block h3 {
+  font: 400 1.25rem/1.25 var(--serif);
+  margin-bottom: 6px;
+}
+
+.mbbs-guide-block p {
+  font-size: 14.5px;
+  color: var(--ink-2);
+  line-height: 1.65;
+}
+
+.mbbs-guide-block p + p {
+  margin-top: 6px;
+}
+
+.mbbs-disclaimer {
+  margin-top: 16px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+@media (min-width: 768px) {
+  .mbbs-tabs {
+    flex-wrap: wrap;
+    overflow: visible;
+    margin: 0;
+    padding-inline: 2px;
+  }
+
+  .mbbs-panel {
+    padding: 32px;
+    border-radius: 30px;
+  }
+
+  .mbbs-guide {
+    grid-template-columns: 1fr 1fr;
+  }
+}

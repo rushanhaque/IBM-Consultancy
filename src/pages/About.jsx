@@ -64,6 +64,9 @@ export default function About() {
               Most visa delays come from small, avoidable mistakes. We get the details right, explain every step
               simply, and stay reachable throughout.
             </p>
+            <p className="story-ceo" data-fade="">
+              Led by <strong>{company.ceo}</strong>, CEO
+            </p>
           </div>
         </div>
       </section>
