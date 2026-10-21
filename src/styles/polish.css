@@ -1,0 +1,506 @@
+/* ==========================================================================
+   Polish layer — monochrome system with a single blue accent (the logo's
+   swoosh), plus hover & micro-interactions. Loaded last.
+   ========================================================================== */
+
+@property --beam {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+
+/* ---------- Accent usage: blue only where it earns attention ---------- */
+
+.em,
+.display em,
+.h2 em,
+.h3 em {
+  color: var(--ink-3);
+}
+
+.eyebrow {
+  color: var(--ink);
+  border-color: var(--line-2);
+}
+
+.eyebrow {
+  overflow: hidden;
+}
+
+.eyebrow-text {
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.eyebrow-dot {
+  background: var(--blue);
+  color: var(--blue);
+}
+
+.eyebrow-light .eyebrow-dot {
+  background: #fff;
+  color: #fff;
+}
+
+.marquee-star {
+  color: var(--blue);
+  display: inline-block;
+  animation: spin 9s linear infinite;
+}
+
+.pt-1 {
+  background: var(--blue);
+}
+
+.btn-primary .btn-fill {
+  background: var(--blue);
+}
+
+.btn-primary:hover {
+  box-shadow: 0 16px 40px -14px rgba(35, 80, 214, 0.55);
+}
+
+.link-arrow:hover {
+  color: var(--blue);
+  border-color: var(--blue);
+}
+
+.rail-card:hover .rail-go {
+  background: var(--blue);
+}
+
+.proc-line i {
+  background: linear-gradient(180deg, var(--ink), var(--blue));
+}
+
+.proc-step.is-active .proc-dot {
+  box-shadow: 0 0 0 7px rgba(35, 80, 214, 0.12);
+}
+
+.price-badge {
+  background: #fff;
+  color: var(--ink);
+}
+
+.dock-book {
+  background: #fff;
+  color: var(--ink);
+}
+
+.dock-book.is-here {
+  background: var(--blue);
+  color: #fff;
+}
+
+.flight-path {
+  stroke: rgba(10, 10, 14, 0.2);
+  stroke-dasharray: 2 6;
+}
+
+.hero-glow.g1 {
+  background: rgba(120, 140, 200, 0.16);
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  border-color: var(--ink);
+  box-shadow: 0 0 0 4px rgba(10, 10, 14, 0.06);
+}
+
+/* ---------- Buttons: rolling label + press ripple ---------- */
+
+.btn .roll {
+  line-height: 1.25;
+}
+
+.btn .roll > span::after {
+  color: inherit;
+}
+
+.btn:hover .roll > span {
+  transform: translateY(-100%);
+}
+
+.btn-ripple {
+  position: absolute;
+  z-index: -1;
+  border-radius: 50%;
+  background: currentColor;
+  pointer-events: none;
+}
+
+/* ---------- Nav: sliding pill ---------- */
+
+.nav-links {
+  position: relative;
+}
+
+.nav-pill {
+  position: absolute;
+  left: 0;
+  top: 5px;
+  bottom: 5px;
+  width: 0;
+  border-radius: 999px;
+  background: rgba(10, 10, 12, 0.06);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.nav-link {
+  z-index: 1;
+}
+
+.nav-link.active {
+  background: transparent;
+}
+
+.brand-mark {
+  transition: filter 0.4s, transform 0.7s var(--ease);
+}
+
+.brand:hover .brand-mark {
+  transform: rotate(-5deg) translateY(-1px);
+}
+
+/* ---------- Photography: monochrome at rest, colour on intent ---------- */
+
+@media (hover: hover) and (pointer: fine) {
+  .rail-photo img,
+  .rb-card img,
+  .dest-thumb img,
+  .sv-visual img,
+  .story-photo img,
+  .why-photo img,
+  .visit-photo img {
+    filter: grayscale(1) contrast(1.05);
+    transition: filter 1.1s var(--ease);
+  }
+
+  .rail-card:hover .rail-photo img,
+  .rb-card:hover img,
+  .dest-row:hover .dest-thumb img,
+  .is-color img,
+  .sv-visual:hover img,
+  .story-visual:hover img,
+  .why-photo:hover img,
+  .visit-card:hover .visit-photo img {
+    filter: grayscale(0) contrast(1);
+  }
+}
+
+/* ---------- Cards ---------- */
+
+.rail-body h3 span,
+.value-card h3,
+.c-card strong {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0% 1px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size 0.7s var(--ease);
+}
+
+.rail-card:hover .rail-body h3 span,
+.value-card:hover h3,
+.c-card:hover strong {
+  background-size: 100% 1px;
+}
+
+.rail-icon,
+.c-icon,
+.value-icon,
+.sv-badge {
+  transition: background 0.5s var(--ease), color 0.5s var(--ease), transform 0.7s var(--ease);
+}
+
+.rail-card:hover .rail-icon {
+  background: var(--ink);
+  color: #fff;
+}
+
+.c-card:hover .c-icon {
+  background: var(--ink);
+  color: #fff;
+}
+
+.c-card:hover .c-icon.wa {
+  background: #25d366;
+}
+
+.sv-visual:hover .sv-badge {
+  background: var(--ink);
+  color: #fff;
+}
+
+.value-card:hover .value-icon {
+  background: var(--ink);
+}
+
+.tags span {
+  transition: border-color 0.4s, background 0.4s, color 0.4s;
+}
+
+.tags span:hover {
+  border-color: var(--ink);
+  background: var(--ink);
+  color: #fff;
+}
+
+.chip svg {
+  transition: transform 0.6s var(--ease);
+}
+
+.chip:hover {
+  border-color: var(--ink);
+  color: var(--ink);
+}
+
+.chip:hover svg {
+  transform: scale(1.12);
+}
+
+.float-card {
+  transition: translate 0.6s var(--ease), box-shadow 0.6s var(--ease);
+}
+
+.float-card:hover {
+  translate: 0 -6px;
+  box-shadow: 0 0 0 1px rgba(10, 10, 12, 0.05), 0 40px 70px -24px rgba(10, 10, 14, 0.4);
+}
+
+/* Rotating light beam around signature cards */
+.beam {
+  position: relative;
+}
+
+.beam::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  padding: 1px;
+  border-radius: inherit;
+  background: conic-gradient(from var(--beam), transparent 0 70%, rgba(130, 160, 245, 0.95) 82%, rgba(255, 255, 255, 0.9) 86%, transparent 94%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: beam 5s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes beam {
+  to {
+    --beam: 360deg;
+  }
+}
+
+/* ---------- Text micro-interactions ---------- */
+
+.stat-num em {
+  display: inline-block;
+  transition: color 0.4s, transform 0.6s var(--ease);
+}
+
+.stat:hover .stat-num em {
+  color: var(--blue);
+  transform: translateY(-4px) rotate(-6deg);
+}
+
+.marquee-item {
+  transition: color 0.4s, -webkit-text-stroke-color 0.4s;
+}
+
+.marquee-item:hover {
+  color: transparent;
+  -webkit-text-stroke: 1px var(--ink);
+}
+
+.values-marquee .marquee-item:hover {
+  color: var(--ink);
+  -webkit-text-stroke: 0;
+}
+
+.faq-q:hover .faq-n {
+  color: var(--blue);
+}
+
+.faq-item:not(.is-open) .faq-q:hover .faq-icon {
+  transform: rotate(90deg);
+  border-color: var(--ink);
+}
+
+.proc-dot {
+  transition: all 0.6s var(--ease), transform 0.5s var(--ease);
+}
+
+.proc-step:hover .proc-dot {
+  transform: scale(1.25);
+}
+
+.testi-nav button svg {
+  transition: transform 0.5s var(--ease);
+}
+
+.testi-nav button:first-child:hover svg {
+  transform: translateX(-4px);
+}
+
+.testi-nav button:nth-child(2):hover svg {
+  transform: translateX(4px);
+}
+
+.to-top svg {
+  transition: transform 0.5s var(--ease);
+}
+
+.to-top:hover svg {
+  transform: rotate(-90deg) translateX(4px);
+}
+
+.footer-word span {
+  transition: transform 0.7s var(--ease), opacity 0.4s;
+}
+
+.footer-word:hover span {
+  opacity: 0.45;
+}
+
+.footer-word span:hover {
+  opacity: 1;
+  transform: translateY(-10%) skewX(-10deg);
+}
+
+.menu-link span {
+  transition: translate 0.7s var(--ease), color 0.4s;
+}
+
+/* translate (not transform): the menu intro tween owns the transform */
+.menu-link:hover span {
+  translate: 14px 0;
+}
+
+.menu-link:hover em {
+  color: #fff;
+}
+
+.nav-phone svg {
+  transition: transform 0.6s var(--ease);
+}
+
+.nav-phone:hover {
+  color: var(--ink);
+}
+
+.nav-phone:hover svg {
+  animation: ring 0.7s var(--ease);
+}
+
+@keyframes ring {
+  20% {
+    transform: rotate(-16deg);
+  }
+  40% {
+    transform: rotate(14deg);
+  }
+  60% {
+    transform: rotate(-10deg);
+  }
+  80% {
+    transform: rotate(6deg);
+  }
+}
+
+.dest-code {
+  transition: background 0.4s;
+}
+
+.dest-row:hover .dest-code {
+  background: var(--blue);
+}
+
+/* Dark surfaces: a whisper of cool light instead of saturated blue */
+.price-card.is-featured,
+.rail-card-cta,
+.hours {
+  background: radial-gradient(circle at 100% 0%, rgba(120, 140, 200, 0.28), transparent 55%), var(--navy);
+}
+
+.cta-shade {
+  background: linear-gradient(115deg, rgba(8, 8, 10, 0.95) 0%, rgba(8, 8, 10, 0.86) 50%, rgba(8, 8, 10, 0.4) 100%);
+}
+
+.cta-line.em,
+.wr-title em,
+.rail-card-cta h3 em {
+  color: rgba(255, 255, 255, 0.62);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .beam::after,
+  .marquee-star {
+    animation: none;
+  }
+}
+
+/* ==========================================================================
+   Performance — same look, cheaper pixels
+   ========================================================================== */
+
+/* Soft glow blobs as radial gradients instead of 80–90px blur filters
+   (identical look, no filter rasterisation while the hero scrolls). */
+.hero-glow {
+  filter: none;
+  transform: scale(1.4);
+}
+
+.hero-glow.g1 {
+  background: radial-gradient(circle, rgba(120, 140, 200, 0.17) 0%, rgba(120, 140, 200, 0.06) 45%, rgba(120, 140, 200, 0) 70%);
+}
+
+.hero-glow.g2 {
+  background: radial-gradient(circle, rgba(205, 208, 216, 0.42) 0%, rgba(205, 208, 216, 0.14) 45%, rgba(205, 208, 216, 0) 70%);
+}
+
+.ph-orb {
+  filter: none;
+}
+
+/* Only long-running movers get their own GPU layer; dozens of buttons/cards don't need one. */
+.magnetic,
+.rb-card {
+  will-change: auto;
+}
+
+/* Phones: the fixed nav and dock use near-opaque fills instead of a live blur, which
+   would otherwise be recomputed on every scroll frame. Visually the same. */
+@media (pointer: coarse) {
+  .nav.is-scrolled .nav-inner {
+    background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  .dock {
+    background: rgba(10, 10, 12, 0.97);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+}
+
+/* The hero's decorative layer is sized to the viewport, not to the text content,
+   so web fonts arriving (which nudge text height) can never move the glows. */
+.hero-bg {
+  bottom: auto;
+  height: 100vh;
+  height: 100svh;
+}
+
+/* Hero text stays hidden (still laid out, no reflow later) until the web fonts are in,
+   capped at 1.5s, so the font swap can never shift what the visitor is looking at. */
+.hero.is-waiting .hero-copy,
+.page-hero.is-waiting .container {
+  visibility: hidden;
+}
