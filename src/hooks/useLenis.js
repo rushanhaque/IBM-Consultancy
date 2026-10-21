@@ -14,7 +14,9 @@ export default function useLenis() {
     if (document.querySelector('.preloader')) lenis.stop()
     lenis.on('scroll', ScrollTrigger.update)
     const raf = (time) => lenis.raf(time * 1000)
-    gsap.ticker.add(raf)
+    // prioritized: scroll first on a clean layout, then GSAP renders. (Running after GSAP
+    // wrote styles forced a synchronous re-layout on every frame.)
+    gsap.ticker.add(raf, false, true)
     gsap.ticker.lagSmoothing(0)
     return () => {
       gsap.ticker.remove(raf)

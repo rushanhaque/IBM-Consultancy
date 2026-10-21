@@ -77,7 +77,7 @@ export const services = [
     title: 'Visa Assistance',
     short: 'Tourist, business and visit visas, filed right.',
     long: 'Complete visa files for Schengen, UK, USA, Canada, Australia, UAE and more.',
-    tags: ['Tourist', 'Business', 'Schengen'],
+    tags: ['Tourist', 'Business', 'Study'],
     includes: ['Document checklist', 'Cover letter & itinerary', 'VFS / BLS appointments'],
   },
   {
@@ -130,8 +130,8 @@ export const services = [
     icon: 'graduation',
     title: 'Study Abroad',
     short: 'From university shortlist to student visa.',
-    long: 'Admissions paperwork and student visas for the UK, USA, Canada, Australia and Europe.',
-    tags: ['UK', 'USA', 'Canada'],
+    long: 'Admissions paperwork and student visas for the UK, USA, Canada, Australia, NZ, Europe, Malaysia, Singapore and the UAE.',
+    tags: ['UK', 'USA', 'Canada', 'Australia', 'NZ', 'Italy', 'Poland', 'Malaysia', 'Singapore', 'UAE'],
     includes: ['University shortlisting', 'SOP & financials review', 'Mock visa interviews'],
   },
   {

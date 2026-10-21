@@ -448,7 +448,7 @@ function ServicesRail() {
             </div>
             <div className="rail-foot">
               <div className="tags">
-                {s.tags.slice(0, 2).map((t) => (
+                {(s.id === 'student' ? s.tags : s.tags.slice(0, 3)).map((t) => (
                   <span key={t}>{t}</span>
                 ))}
               </div>

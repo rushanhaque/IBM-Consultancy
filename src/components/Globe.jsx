@@ -212,6 +212,8 @@ export default function Globe({ className = '' }) {
           by[b][k] = cy - (y * cosT - z1 * sinT) * R
         }
         const s = 1.15 * dpr
+        const d = s * 1.77 // side of a square with the same area as the old dot
+        const h2 = d / 2
         ctx.fillStyle = '#0B0B0E'
         for (let b = 0; b < BUCKETS; b++) {
           const n = bn[b]
@@ -220,10 +222,8 @@ export default function Globe({ className = '' }) {
           ctx.beginPath()
           const xs = bx[b]
           const ys = by[b]
-          for (let k = 0; k < n; k++) {
-            ctx.moveTo(xs[k] + s, ys[k])
-            ctx.arc(xs[k], ys[k], s, 0, TAU)
-          }
+          // dots are 2–3px: squares of equal area look identical and rasterise far faster than arcs
+          for (let k = 0; k < n; k++) ctx.rect(xs[k] - h2, ys[k] - h2, d, d)
           ctx.fill()
         }
         ctx.globalAlpha = 1

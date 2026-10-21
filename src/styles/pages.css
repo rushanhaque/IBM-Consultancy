@@ -1120,3 +1120,58 @@
   font-weight: 300;
   color: var(--ink);
 }
+
+/* ---------- Contact: dimmed Delhi map background ---------- */
+
+.contact-page {
+  position: relative;
+  isolation: isolate;
+}
+
+.contact-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: -1;
+  height: clamp(820px, 125vh, 1400px);
+  overflow: hidden;
+  pointer-events: none;
+  /* fades away down the page so the form area stays calm */
+  -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 45%, transparent 100%);
+  mask-image: linear-gradient(180deg, #000 0%, #000 45%, transparent 100%);
+}
+
+/* the image is already greyscale and blurred at build time (scripts/build-contact-map.mjs),
+   so no CSS filter is needed here */
+.contact-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.32;
+}
+
+/* soft vignette: the map recedes towards the edges and behind the headline */
+.contact-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 80% 70% at 50% 45%, rgba(250, 250, 249, 0) 0%, rgba(250, 250, 249, 0.35) 100%),
+    linear-gradient(90deg, rgba(250, 250, 249, 0.35) 0%, rgba(250, 250, 249, 0) 50%);
+}
+
+/* the page hero's own glow and grid would fight the map */
+.contact-page .page-hero .ph-bg {
+  display: none;
+}
+
+.map-credit {
+  display: block;
+  font-size: 10.5px;
+  color: var(--muted);
+  opacity: 0.75;
+}
+
+.contact-page .ph-extra {
+  margin-top: 18px;
+}

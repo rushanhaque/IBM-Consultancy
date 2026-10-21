@@ -49,10 +49,32 @@ export default function useReveal(scope, deps = []) {
       }
       const hiddenUp = (y) => ({ transform: 'translate(0px, ' + y + 'px)', opacity: '0' })
 
+      // Reveals run as CSS transitions: the browser animates transform/opacity itself,
+      // so nothing parses styles in JavaScript while you scroll. Curves match the old GSAP eases.
+      const EXPO = 'cubic-bezier(0.16, 1, 0.3, 1)'
+      const SILK = 'cubic-bezier(0.7, 0, 0.15, 1)'
+      // two frames on, the starting state has certainly been rendered, so the transition runs
+      const afterPaint = (fn) => requestAnimationFrame(() => requestAnimationFrame(fn))
+      const transitionTo = (el, css, { props, duration, delay = 0, ease = EXPO, clear = [] }) => {
+        el.style.transition = props.map((p) => p + ' ' + duration + 's ' + ease + ' ' + delay + 's').join(', ')
+        Object.assign(el.style, css)
+        // afterwards hand the element back to its stylesheet (hover effects etc.)
+        setTimeout(() => {
+          el.style.transition = ''
+          clear.forEach((p) => (el.style[p] = ''))
+        }, (duration + delay) * 1000 + 80)
+      }
+
       q('[data-split]').forEach((el) => {
-        const t = el.querySelectorAll('.w > span')
-        style(t, { transform: 'translate(0px, 115%) rotate(3deg)' })
-        onEnter(el, 'top 88%', () => gsap.to(t, { y: 0, yPercent: 0, rotate: 0, duration: 1.3, stagger: 0.045 }))
+        const words = [...el.querySelectorAll('.w > span')]
+        style(words, { transform: 'translate(0px, 115%) rotate(3deg)' })
+        onEnter(el, 'top 88%', () =>
+          afterPaint(() =>
+            words.forEach((w, i) =>
+              transitionTo(w, { transform: 'translate(0px, 0%) rotate(0deg)' }, { props: ['transform'], duration: 1.3, delay: i * 0.045, clear: ['transform'] })
+            )
+          )
+        )
       })
 
       q('.eyebrow-text:not([data-noscramble])').forEach((el) => {
@@ -62,32 +84,46 @@ export default function useReveal(scope, deps = []) {
         )
       })
 
+      const shown = { transform: 'translate(0px, 0px)', opacity: '1' }
       q('[data-fade]').forEach((el) => {
         style([el], hiddenUp(48))
         const delay = parseFloat(el.dataset.delay || 0)
-        // clearProps hands transform back to CSS so hover effects keep working
-        onEnter(el, 'top 86%', () => gsap.to(el, { y: 0, opacity: 1, duration: 1.3, delay, clearProps: 'transform,opacity' }))
+        onEnter(el, 'top 86%', () =>
+          afterPaint(() => transitionTo(el, shown, { props: ['transform', 'opacity'], duration: 1.3, delay, clear: ['transform', 'opacity'] }))
+        )
       })
 
       q('[data-stagger]').forEach((el) => {
         const kids = [...el.children]
         style(kids, hiddenUp(56))
-        onEnter(el, 'top 84%', () => gsap.to(kids, { y: 0, opacity: 1, duration: 1.3, stagger: 0.09, clearProps: 'transform,opacity' }))
+        onEnter(el, 'top 84%', () =>
+          afterPaint(() =>
+            kids.forEach((k, i) =>
+              transitionTo(k, shown, { props: ['transform', 'opacity'], duration: 1.3, delay: i * 0.09, clear: ['transform', 'opacity'] })
+            )
+          )
+        )
       })
 
       q('[data-clip]').forEach((el) => {
         style([el], { clipPath: 'inset(100% 0% 0% 0% round 28px)' })
-        onEnter(el, 'top 88%', () => gsap.to(el, { clipPath: 'inset(0% 0% 0% 0% round 28px)', duration: 1.6, ease: 'silk' }))
+        onEnter(el, 'top 88%', () =>
+          afterPaint(() => transitionTo(el, { clipPath: 'inset(0% 0% 0% 0% round 28px)' }, { props: ['clip-path'], duration: 1.6, ease: SILK, clear: ['clipPath'] }))
+        )
       })
 
+      // the photo's zoom uses the separate 'scale' property so it never collides with
+      // the parallax drift, which GSAP drives through 'transform'
       q('[data-img-reveal]').forEach((el) => {
         const img = el.querySelector('img')
         style([el], { clipPath: 'inset(18% 12% 18% 12%)' })
-        style([img], { transform: 'scale(1.35)' })
-        onEnter(el, 'top 90%', () => {
-          gsap.to(el, { clipPath: 'inset(0% 0% 0% 0%)', duration: 1.7, ease: 'silk' })
-          gsap.to(img, { scale: 1, duration: 2, ease: 'expo.out' })
-        })
+        style([img], { scale: '1.35' })
+        onEnter(el, 'top 90%', () =>
+          afterPaint(() => {
+            transitionTo(el, { clipPath: 'inset(0% 0% 0% 0%)' }, { props: ['clip-path'], duration: 1.7, ease: SILK, clear: ['clipPath'] })
+            transitionTo(img, { scale: '1' }, { props: ['scale'], duration: 2, clear: ['scale'] })
+          })
+        )
       })
 
       // scrubbed tweens are built lazily (immediateRender off) so nothing is read here
@@ -98,7 +134,9 @@ export default function useReveal(scope, deps = []) {
 
       q('[data-line]').forEach((el) => {
         style([el], { transform: 'scaleX(0)', transformOrigin: 'left center' })
-        onEnter(el, 'top 92%', () => gsap.to(el, { scaleX: 1, duration: 1.6, ease: 'silk' }))
+        onEnter(el, 'top 92%', () =>
+          afterPaint(() => transitionTo(el, { transform: 'scaleX(1)' }, { props: ['transform'], duration: 1.6, ease: SILK, clear: ['transform'] }))
+        )
       })
 
       q('[data-speed]').forEach((el) => {
@@ -123,6 +161,11 @@ export default function useReveal(scope, deps = []) {
 
       // ---------- phase 2: reads only (trigger measurement) ----------
       triggers.forEach((cfg) => ScrollTrigger.create(cfg))
+
+      // rotating card beams animate only while on screen
+      q('.beam').forEach((el) => {
+        ScrollTrigger.create({ trigger: el, start: 'top bottom', end: 'bottom top', toggleClass: { targets: el, className: 'is-live' } })
+      })
 
       q('[data-colorize]').forEach((el) => {
         ScrollTrigger.create({ trigger: el, start: 'top 62%', end: 'bottom 38%', toggleClass: { targets: el, className: 'is-color' } })

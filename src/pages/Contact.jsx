@@ -107,12 +107,19 @@ export default function Contact() {
   const mapSrc = `https://maps.google.com/maps?q=${encodeURIComponent(company.mapQuery)}&z=15&output=embed`
 
   return (
-    <div ref={ref}>
+    <div ref={ref} className="contact-page">
+      {/* dimmed, pre-blurred Delhi map behind the page, centred on the office */}
+      <div className="contact-bg" aria-hidden="true">
+        <img src="/contact-map.webp" alt="" width="1600" height="1000" decoding="async" fetchpriority="low" />
+      </div>
       <PageHero
         eyebrow="Contact & booking"
         title="Let’s plan *your next move.*"
         text="We usually reply on WhatsApp within working hours."
-      />
+      >
+        {/* the background map is OpenStreetMap data, which requires this credit */}
+        <small className="map-credit">Background map © OpenStreetMap contributors</small>
+      </PageHero>
 
       <section className="section contact">
         <div className="container contact-grid">

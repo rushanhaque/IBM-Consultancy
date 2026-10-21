@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "build:assets": "node scripts/build-land-dots.mjs && node scripts/optimize-images.mjs"
+    "build:assets": "node scripts/build-land-dots.mjs && node scripts/optimize-images.mjs",
+    "build:map": "node scripts/build-contact-map.mjs"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
