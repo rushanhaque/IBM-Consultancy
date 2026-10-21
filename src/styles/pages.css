@@ -35,7 +35,7 @@
 .ph-title {
   margin-top: 24px;
   max-width: 1060px;
-  font-size: clamp(2.9rem, 12vw, 7.2rem);
+  font-size: clamp(2.55rem, 10.56vw, 6.62rem);
 }
 
 .ph-text {
@@ -68,7 +68,7 @@
 
   .ph-title {
     margin-top: 28px;
-    font-size: clamp(3rem, 7.2vw, 7.2rem);
+    font-size: clamp(2.64rem, 6.34vw, 6.62rem);
   }
 
   .ph-text {
@@ -93,7 +93,7 @@
 .sv-row {
   display: grid;
   gap: 28px;
-  padding-block: clamp(48px, 7vw, 100px);
+  padding-block: clamp(40px, 6vw, 88px);
   border-top: 1px solid var(--line);
   scroll-margin-top: 90px;
 }

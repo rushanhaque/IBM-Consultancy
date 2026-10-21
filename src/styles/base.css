@@ -117,7 +117,7 @@ ol {
 }
 
 .section {
-  padding-block: clamp(80px, 12vw, 168px);
+  padding-block: clamp(64px, 10vw, 144px);
 }
 
 .muted {
@@ -163,13 +163,13 @@ ol {
 }
 
 .h2 {
-  font-size: clamp(2.3rem, 8.4vw, 4.5rem);
+  font-size: clamp(2.02rem, 7.39vw, 4.14rem);
   line-height: 1.02;
   letter-spacing: -0.03em;
 }
 
 .h3 {
-  font-size: clamp(1.75rem, 5vw, 2.5rem);
+  font-size: clamp(1.54rem, 4.4vw, 2.3rem);
   line-height: 1.08;
   letter-spacing: -0.02em;
 }
@@ -184,7 +184,7 @@ ol {
 }
 
 .lead {
-  font-size: clamp(1.02rem, 1.15vw, 1.2rem);
+  font-size: clamp(0.98rem, 1.1vw, 1.16rem);
   line-height: 1.65;
   color: var(--ink-2);
 }
@@ -773,4 +773,15 @@ html.lenis body {
   transition-property: overflow;
   transition-duration: 1ms;
   transition-behavior: allow-discrete;
+}
+
+/* slightly tighter body copy on phones */
+@media (max-width: 767px) {
+  body { font-size: 15px; }
+}
+@media (max-width: 767px) {
+  .btn { height: 48px; padding-left: 20px; gap: 12px; font-size: 14px; }
+  .btn-sm { height: 42px; }
+  .btn-sm .btn-icon { width: 32px; height: 32px; }
+  .btn-icon { width: 36px; height: 36px; }
 }
