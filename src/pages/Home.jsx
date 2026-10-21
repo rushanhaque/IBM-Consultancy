@@ -678,7 +678,7 @@ function Ribbon() {
         {ribbon.map((row, ri) => (
           <div className="ribbon-row" key={ri}>
             {[...row, ...row].map((p, i) => (
-              <figure className="rb-card" key={`${p.code}${i}`} data-skew="">
+              <figure className="rb-card" key={`${p.code}${i}`}>
                 <Img id={p.id} alt={p.label} reveal={false} sizes="(min-width: 1024px) 360px, 60vw" />
                 <figcaption>
                   <span className="rb-code">{p.code}</span>
