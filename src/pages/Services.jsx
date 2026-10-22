@@ -45,7 +45,7 @@ export default function Services() {
         <div className="container">
           {services.map((s, i) => (
             <article className={`sv-row ${i % 2 ? 'is-flip' : ''}`} id={s.id} key={s.id}>
-              <div className="sv-visual" data-draw="" data-colorize="">
+              <Link to={`/contact?topic=${s.id}`} className="sv-visual" aria-label={`Enquire about ${s.title}`} data-draw="" data-colorize="">
                 <Img id={s.image} alt={s.title} parallax sizes="(min-width: 1024px) 45vw, 92vw" className="sv-photo" />
                 <span className="sv-big" aria-hidden="true">
                   0{i + 1}
@@ -58,7 +58,7 @@ export default function Services() {
                     <span key={t}>{t}</span>
                   ))}
                 </div>
-              </div>
+              </Link>
               <div className="sv-copy">
                 <span className="sv-idx" data-fade="">
                   0{i + 1} / 0{services.length}

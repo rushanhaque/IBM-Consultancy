@@ -51,6 +51,25 @@ export default function Contact() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [initial])
 
+  // arriving from a service card: bring the form into view once the page has settled
+  const formRef = useRef(null)
+  useEffect(() => {
+    if (!initial) return
+    // wait out the route transition and, on a fresh visit, the intro screen (which pauses scrolling)
+    let tries = 0
+    const t = setInterval(() => {
+      const el = formRef.current
+      const lenis = window.__lenis
+      const ready = el && !document.querySelector('.preloader') && !(lenis && lenis.isStopped)
+      if (!ready && ++tries < 30) return
+      clearInterval(t)
+      if (!el) return
+      if (lenis) lenis.scrollTo(el, { offset: -110, duration: 1.2 })
+      else el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }, 300)
+    return () => clearInterval(t)
+  }, [initial])
+
   // today in local time, so the date picker can't offer past days
   const today = useMemo(() => {
     const d = new Date()
@@ -139,7 +158,7 @@ export default function Contact() {
                 </Button>
               </div>
             ) : (
-              <form onSubmit={submit} noValidate>
+              <form onSubmit={submit} noValidate ref={formRef}>
                 <div className="form-head">
                   <h2 className="h3">Book a consultation</h2>
                   <p>Fill in a few details and we’ll confirm your slot on WhatsApp.</p>

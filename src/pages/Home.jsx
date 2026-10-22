@@ -433,7 +433,7 @@ function ServicesRail() {
       </div>
       <div className="rail-track">
         {services.map((s, i) => (
-          <Spotlight as={Link} to={`/services#${s.id}`} className="rail-card" key={s.id} data-draw="">
+          <Spotlight as={Link} to={`/contact?topic=${s.id}`} className="rail-card" key={s.id} data-draw="">
             <div className="rail-photo">
               <Img id={s.image} alt={s.title} reveal={false} sizes="(min-width: 1024px) 420px, 82vw" />
               <span className="rail-num">0{i + 1}</span>
