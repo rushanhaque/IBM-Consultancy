@@ -180,15 +180,7 @@ export default function Contact() {
                       ))}
                     </select>
                   </Field>
-                  <Field label="Destination country (optional)">
-                    {/* pick from the list or type any other country */}
-                    <input value={form.destination} onChange={set('destination')} placeholder=" " list="destinations" autoComplete="off" />
-                    <datalist id="destinations">
-                      {countries.map((c) => (
-                        <option key={c} value={c} />
-                      ))}
-                    </datalist>
-                  </Field>
+                  <CountryField value={form.destination} onChange={(v) => setForm((f) => ({ ...f, destination: v }))} />
                   <Field label="Preferred date" filled error={errors.date}>
                     <input type="date" min={today} value={form.date} onChange={set('date')} />
                   </Field>
@@ -281,6 +273,88 @@ export default function Contact() {
           </div>
         </div>
       </section>
+    </div>
+  )
+}
+
+// Destination: a dropdown of the countries we serve that also accepts any typed country.
+function CountryField({ value, onChange }) {
+  const [open, setOpen] = useState(false)
+  const [hi, setHi] = useState(-1)
+  const q = value.trim().toLowerCase()
+  const exact = countries.some((c) => c.toLowerCase() === q)
+  const list = q && !exact ? countries.filter((c) => c.toLowerCase().includes(q)) : countries
+  const pick = (c) => {
+    onChange(c)
+    setOpen(false)
+    setHi(-1)
+  }
+  const onKey = (e) => {
+    if (e.key === 'ArrowDown') {
+      e.preventDefault()
+      setOpen(true)
+      setHi((h) => Math.min(h + 1, list.length - 1))
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault()
+      setHi((h) => Math.max(h - 1, 0))
+    } else if (e.key === 'Enter' && open && hi >= 0) {
+      e.preventDefault()
+      pick(list[hi])
+    } else if (e.key === 'Escape') setOpen(false)
+  }
+
+  return (
+    <div className={`field is-select country-field ${open ? 'is-open' : ''}`}>
+      <input
+        value={value}
+        onChange={(e) => {
+          onChange(e.target.value)
+          setOpen(true)
+          setHi(-1)
+        }}
+        onFocus={() => setOpen(true)}
+        onBlur={() => setOpen(false)}
+        onKeyDown={onKey}
+        placeholder=" "
+        autoComplete="off"
+        role="combobox"
+        aria-expanded={open}
+        aria-controls="country-list"
+        aria-label="Destination country"
+      />
+      <span className="field-label">Destination country (optional)</span>
+      <button
+        type="button"
+        className="country-toggle"
+        tabIndex={-1}
+        aria-label="Show countries"
+        onMouseDown={(e) => {
+          e.preventDefault()
+          const input = e.currentTarget.parentElement.querySelector('input')
+          if (open) setOpen(false)
+          else input.focus()
+        }}
+      >
+        <Icon name="arrow" size={16} className="field-caret" />
+      </button>
+      {open && list.length > 0 && (
+        <ul className="country-list" id="country-list" role="listbox" data-lenis-prevent="">
+          {list.map((c, i) => (
+            <li
+              key={c}
+              role="option"
+              aria-selected={c === value}
+              className={`${i === hi ? 'is-hi' : ''} ${c === value ? 'is-picked' : ''}`}
+              onMouseDown={(e) => {
+                e.preventDefault()
+                pick(c)
+              }}
+            >
+              {c}
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   )
 }
