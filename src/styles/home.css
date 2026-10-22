@@ -1037,9 +1037,9 @@
   gap: 16px;
   min-height: 440px;
   padding: 28px;
+  border: 1px solid transparent;
   background: radial-gradient(circle at 100% 0%, rgba(120, 140, 200, 0.55), transparent 55%), var(--navy);
   color: #fff;
-  border: 0;
 }
 
 .rail-card-cta > svg {
@@ -1092,6 +1092,11 @@
   .rail-card {
     width: clamp(320px, 27vw, 400px);
     height: clamp(420px, 56vh, 540px);
+  }
+
+  /* same box as the service cards, whatever the screen height */
+  .rail-card-cta {
+    min-height: 0;
   }
 
   .rail-photo {
