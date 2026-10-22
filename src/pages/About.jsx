@@ -1,6 +1,6 @@
 import { useRef } from 'react'
 import useReveal from '../hooks/useReveal'
-import { company, photos, stats } from '../data/site'
+import { company, offices, photos, stats } from '../data/site'
 import Icon from '../components/Icon'
 import Split from '../components/Split'
 import Button from '../components/Button'
@@ -135,14 +135,16 @@ export default function About() {
                 <Eyebrow>Visit us</Eyebrow>
                 <h3 className="h3">Better yet, see us in person.</h3>
                 <div className="visit-info">
-                  <p>
-                    <Icon name="pin" size={18} />
-                    <span>
-                      {company.address[0]}
-                      <br />
-                      {company.address[1]}
-                    </span>
-                  </p>
+                  {offices.map((o) => (
+                    <p key={o.label}>
+                      <Icon name="pin" size={18} />
+                      <span>
+                        {o.lines[0]}
+                        <br />
+                        {o.lines[1]}
+                      </span>
+                    </p>
+                  ))}
                   <p>
                     <Icon name="clock" size={18} />
                     <span>Mon – Fri · 09:00 – 17:00</span>

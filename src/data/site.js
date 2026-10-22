@@ -51,6 +51,16 @@ export const company = {
   mapQuery: 'C-11/197 C-Block Yamuna Vihar Shahdara Delhi 110053',
 }
 
+// both offices, in the order they're shown
+export const offices = [
+  { label: 'Yamuna Vihar office', lines: company.address, mapQuery: company.mapQuery },
+  {
+    label: 'Chanakyapuri office',
+    lines: ['#3 Yashwant Place, Chanakyapuri', 'New Delhi 110021'],
+    mapQuery: 'Yashwant Place Chanakyapuri New Delhi 110021',
+  },
+]
+
 // opens the visitor's mail app with a ready-written enquiry
 export const mailLink = (subject, body) =>
   `mailto:${company.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`

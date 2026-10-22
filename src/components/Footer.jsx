@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { company, nav, services, waLink } from '../data/site'
+import { company, nav, offices, services, waLink } from '../data/site'
 import Icon from './Icon'
 
 // Footer: brand + CEO, page links, services, contact details, one legal line.
@@ -71,14 +71,16 @@ export default function Footer() {
                 <Icon name="mail" size={15} />
                 <a href={`mailto:${company.email}`}>{company.email}</a>
               </li>
-              <li>
-                <Icon name="pin" size={15} />
-                <span>
-                  {company.address[0]}
-                  <br />
-                  {company.address[1]}
-                </span>
-              </li>
+              {offices.map((o) => (
+                <li key={o.label}>
+                  <Icon name="pin" size={15} />
+                  <span>
+                    {o.lines[0]}
+                    <br />
+                    {o.lines[1]}
+                  </span>
+                </li>
+              ))}
               <li>
                 <Icon name="clock" size={15} />
                 <span>Mon – Fri · 09:00 – 17:00</span>

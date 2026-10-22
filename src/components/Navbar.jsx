@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import { gsap, useGSAP } from '../lib/gsap'
-import { nav, company, waLink } from '../data/site'
+import { nav, company, offices, waLink } from '../data/site'
 import Button from './Button'
 
 export function Brand({ light = false }) {
@@ -122,7 +122,9 @@ export default function Navbar() {
             <a href={waLink()} target="_blank" rel="noreferrer">
               WhatsApp us
             </a>
-            <p>{company.address.join(', ')}</p>
+            {offices.map((o) => (
+              <p key={o.label}>{o.lines.join(', ')}</p>
+            ))}
           </div>
         </div>
       </div>

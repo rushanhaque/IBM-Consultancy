@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import useReveal from '../hooks/useReveal'
-import { FORMSPREE, company, countries, hours, services, waLink } from '../data/site'
+import { FORMSPREE, company, countries, hours, offices, services, waLink } from '../data/site'
 import Icon from '../components/Icon'
 import Button from '../components/Button'
 import { PageHero, Spotlight } from '../components/Sections'
@@ -256,24 +256,27 @@ export default function Contact() {
                 </span>
                 <Icon name="arrowUpRight" size={18} className="c-go" />
               </Spotlight>
-              <Spotlight
-                as="a"
-                href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(company.mapQuery)}`}
-                target="_blank"
-                rel="noreferrer"
-                className="c-card"
-                data-draw=""
-              >
-                <span className="c-icon">
-                  <Icon name="pin" size={20} />
-                </span>
-                <span>
-                  <small>Visit us</small>
-                  <strong>{company.address[0]}</strong>
-                  <em>{company.address[1]}</em>
-                </span>
-                <Icon name="arrowUpRight" size={18} className="c-go" />
-              </Spotlight>
+              {offices.map((o) => (
+                <Spotlight
+                  key={o.label}
+                  as="a"
+                  href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(o.mapQuery)}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="c-card"
+                  data-draw=""
+                >
+                  <span className="c-icon">
+                    <Icon name="pin" size={20} />
+                  </span>
+                  <span>
+                    <small>{o.label}</small>
+                    <strong>{o.lines[0]}</strong>
+                    <em>{o.lines[1]}</em>
+                  </span>
+                  <Icon name="arrowUpRight" size={18} className="c-go" />
+                </Spotlight>
+              ))}
             </div>
 
             <div className="hours beam" data-fade="">
