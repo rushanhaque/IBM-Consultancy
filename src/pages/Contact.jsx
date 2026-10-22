@@ -4,7 +4,7 @@ import useReveal from '../hooks/useReveal'
 import { FORMSPREE, company, countries, hours, services, waLink } from '../data/site'
 import Icon from '../components/Icon'
 import Button from '../components/Button'
-import { Eyebrow, PageHero, Spotlight } from '../components/Sections'
+import { PageHero, Spotlight } from '../components/Sections'
 
 function useOpenStatus() {
   return useMemo(() => {
@@ -135,26 +135,9 @@ export default function Contact() {
     }
   }
 
-  // Google Maps is ~400KB of third-party code: only load it as the map nears the screen
-  const mapRef = useRef(null)
-  const [mapOn, setMapOn] = useState(false)
-  useEffect(() => {
-    const el = mapRef.current
-    if (!el) return
-    const io = new IntersectionObserver(([e]) => {
-      if (!e.isIntersecting) return
-      setMapOn(true)
-      io.disconnect()
-    }, { rootMargin: '300px 0px' })
-    io.observe(el)
-    return () => io.disconnect()
-  }, [])
-
-  const mapSrc = `https://maps.google.com/maps?q=${encodeURIComponent(company.mapQuery)}&z=15&output=embed`
-
   return (
     <div ref={ref} className="contact-page">
-      {/* dimmed, pre-blurred Delhi map behind the page, centred on the office */}
+      {/* dimmed, pre-blurred Delhi map fixed behind the whole page, centred on the office */}
       <div className="contact-bg" aria-hidden="true">
         <img src="/contact-map.webp" alt="" width="1600" height="1000" decoding="async" fetchpriority="low" />
       </div>
@@ -312,17 +295,6 @@ export default function Contact() {
           </aside>
         </div>
 
-        <div className="container">
-          <div className="map" data-clip="" ref={mapRef}>
-            <iframe title="IBM Consultancy location map" src={mapOn ? mapSrc : undefined} loading="lazy" referrerPolicy="no-referrer-when-downgrade" />
-            <div className="map-pin-card">
-              <Eyebrow>IBM Consultancy</Eyebrow>
-              <p>
-                {company.address[0]}, {company.address[1]}
-              </p>
-            </div>
-          </div>
-        </div>
       </section>
     </div>
   )
