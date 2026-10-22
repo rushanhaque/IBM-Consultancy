@@ -132,8 +132,8 @@ export const services = [
     icon: 'graduation',
     title: 'Study Abroad',
     short: 'From university shortlist to student visa.',
-    long: 'Admissions paperwork and student visas for the UK, USA, Canada, Australia, NZ, Europe, Malaysia, Singapore and the UAE.',
-    tags: ['UK', 'USA', 'Canada', 'Australia', 'NZ', 'Italy', 'Poland', 'Malaysia', 'Singapore', 'UAE'],
+    long: 'Admissions paperwork and student visas for Russia, Georgia, Kazakhstan, Kyrgyzstan, Belarus, Egypt, Malaysia, Belgium, Nepal, Poland and Germany.',
+    tags: ['Russia', 'Georgia', 'Kazakhstan', 'Kyrgyzstan', 'Belarus', 'Egypt', 'Malaysia', 'Belgium', 'Nepal', 'Poland', 'Germany'],
     includes: ['University shortlisting', 'SOP & financials review', 'Mock visa interviews'],
   },
   {
