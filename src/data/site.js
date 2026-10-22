@@ -157,7 +157,7 @@ export const services = [
     id: 'work',
     icon: 'briefcase',
     title: 'Work Placement',
-    short: 'Jobs abroad in Europe, the Gulf and Asia.',
+    short: 'Hotel and kitchen jobs in Europe, the Gulf and Asia.',
     long: 'Work placements and work visas across 34 countries in Europe, the Gulf and Asia, from job offer to departure.',
     tags: [
       'Albania', 'Belarus', 'Belgium', 'Croatia', 'Czech Republic', 'Georgia', 'Germany', 'Italy', 'Latvia', 'Lithuania',
@@ -166,6 +166,16 @@ export const services = [
       'Malaysia', 'Indonesia', 'Philippines', 'Thailand', 'Singapore', 'Japan', 'Azerbaijan',
     ],
     includes: ['Job matching & employer offer', 'Work permit & visa filing', 'Pre-departure support'],
+    // openings we currently place candidates in
+    roles: [
+      'Pastry assistant / baker',
+      'Line cook / commis chef',
+      'Kitchen steward / dishwasher',
+      'Bartender',
+      'Barback',
+      'Waiter',
+      'Hotel management',
+    ],
   },
 ]
 

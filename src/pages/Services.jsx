@@ -78,6 +78,16 @@ export default function Services() {
                     </li>
                   ))}
                 </ul>
+                {s.roles && (
+                  <div className="sv-roles" data-fade="">
+                    <strong>Opportunities</strong>
+                    <div className="tags">
+                      {s.roles.map((r) => (
+                        <span key={r}>{r}</span>
+                      ))}
+                    </div>
+                  </div>
+                )}
                 {s.id === 'work' && (
                   <p className="sv-mbbs" data-fade="">
                     <strong>Countries:</strong> {s.tags.join(' · ')}.
