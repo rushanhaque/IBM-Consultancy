@@ -1,0 +1,90 @@
+// Partner universities and colleges for Bachelor's, Master's, Diploma and PhD study,
+// from "Bluesky Direct tie up list of colleges and Institute.xlsx" (one sheet per country).
+// Names are tidied (spelling, capitals); internal partner codes from the sheet are left out.
+export const universities = [
+  {
+    country: 'United Kingdom',
+    unis: [
+      'ARU College',
+      'Birmingham City University International College (BCUIC)',
+      'Brunel University London Pathway College',
+      'Hertfordshire International College (HIC)',
+      'International College Portsmouth (ICP)',
+      'International College at Robert Gordon University (ICRGU)',
+      'Keele University International College (KUIC)',
+      'The College, Swansea University (TCSU)',
+      'University Academy 92 (UA92)',
+      'University of Northampton International College (UNIC)',
+      'University of Plymouth International College (UPIC)',
+      'University of Aberdeen',
+      'Royal Holloway, University of London',
+      'University of Strathclyde, Glasgow',
+      'Teesside University',
+      'University of Sussex',
+      'University of Sheffield',
+      'University of Surrey',
+      'Liverpool John Moores University',
+      'Kingston University London',
+      'University of Huddersfield',
+      'Cardiff University',
+    ],
+  },
+  {
+    country: 'Canada',
+    unis: [
+      'Capilano University',
+      'University of Northern British Columbia',
+      'Nipissing University',
+      'St. Lawrence College',
+      'University Canada West',
+      'Acadia University',
+      'Cape Breton University',
+      'St. Thomas University',
+      'York College',
+      'Trent University',
+    ],
+  },
+  {
+    country: 'New Zealand',
+    unis: [
+      'Massey University',
+      'ATMC New Zealand',
+      'New Zealand Tertiary College',
+      'UP Education',
+      'University of Waikato College',
+      'University of Canterbury International College (UCIC), University Transfer Program',
+      'Otago Polytechnic',
+    ],
+  },
+  {
+    country: 'Germany',
+    unis: [
+      'Lancaster University Leipzig: International Foundation, BSc (first-year direct entry), Pre-Master’s, MSc (direct entry)',
+      'SRH International College (SRHIC): International Foundation, Pre-Master’s',
+    ],
+  },
+  {
+    country: 'France',
+    unis: ['ICN International College Paris (ICNIC): Foundation Program, Pre-Master’s', 'Collège de Paris'],
+  },
+  {
+    country: 'Netherlands',
+    unis: ['The Hague Pathway College', 'Twente Pathway College'],
+  },
+  {
+    country: 'Finland',
+    unis: ['Savonia University of Applied Sciences', 'LAB University of Applied Sciences', 'University of Vaasa', 'LUT University'],
+  },
+  {
+    country: 'Switzerland',
+    unis: ['BHMS (Business & Hotel Management School)'],
+  },
+  {
+    country: 'Malta',
+    unis: ['School of Business & Management in Malta', 'EIE European Business School Malta'],
+  },
+  {
+    country: 'Malaysia',
+    unis: ['Alfa University', 'Cyberjaya University', 'Lincoln University', 'LSBF (London School of Business and Finance)', 'Asia e University'],
+  },
+]

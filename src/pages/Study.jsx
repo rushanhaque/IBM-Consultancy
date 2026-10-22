@@ -2,12 +2,15 @@ import { useRef, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import useReveal from '../hooks/useReveal'
 import { mbbs } from '../data/mbbs'
+import { universities } from '../data/universities'
 import Icon from '../components/Icon'
 import Button from '../components/Button'
 import { CTA, PageHero } from '../components/Sections'
-import { services, waLink } from '../data/site'
+import { waLink } from '../data/site'
 
-const studyCountries = services.find((s) => s.id === 'student').tags
+// every country we place students in: partner universities plus MBBS destinations
+const allCountries = [...new Set([...universities.map((u) => u.country), ...mbbs.map((m) => m.country)])]
+const partnerCount = universities.reduce((n, u) => n + u.unis.length, 0)
 
 const programmes = [
   {
@@ -41,7 +44,7 @@ const programmes = [
   { id: 'mbbs', label: 'MBBS' },
 ]
 
-const universities = mbbs.reduce((n, c) => n + (c.rows?.length || 0), 0)
+const mbbsCount = mbbs.reduce((n, c) => n + (c.rows?.length || 0), 0)
 
 export default function Study() {
   const ref = useRef(null)
@@ -49,6 +52,8 @@ export default function Study() {
   const [params] = useSearchParams()
   const [prog, setProg] = useState(programmes.some((p) => p.id === params.get('p')) ? params.get('p') : 'bachelor')
   const [active, setActive] = useState(mbbs[0].country)
+  const [uniCountry, setUniCountry] = useState(universities[0].country)
+  const u = universities.find((x) => x.country === uniCountry)
   const p = programmes.find((x) => x.id === prog)
   const c = mbbs.find((x) => x.country === active)
 
@@ -57,7 +62,7 @@ export default function Study() {
       <PageHero
         eyebrow="Study Abroad"
         title="Study *abroad.*"
-        text={`Bachelor's, Master's, Diploma, PhD and MBBS, across ${studyCountries.length} countries.`}
+        text={`Bachelor's, Master's, Diploma, PhD and MBBS, across ${allCountries.length} countries.`}
       />
 
       <section className="section mbbs">
@@ -87,17 +92,33 @@ export default function Study() {
                   </li>
                 ))}
               </ul>
-              <h3 className="study-sub">Countries</h3>
-              <div className="tags study-countries">
-                {studyCountries.map((x) => (
-                  <span key={x}>{x}</span>
+              <h3 className="study-sub">
+                Partner universities · {partnerCount}+ across {universities.length} countries
+              </h3>
+              <div className="mbbs-tabs" role="tablist" aria-label="Partner university countries">
+                {universities.map((x) => (
+                  <button
+                    key={x.country}
+                    role="tab"
+                    aria-selected={x.country === uniCountry}
+                    className={`chip ${x.country === uniCountry ? 'is-active' : ''}`}
+                    onClick={() => setUniCountry(x.country)}
+                  >
+                    {x.country}
+                    <span className="mbbs-count">{x.unis.length}</span>
+                  </button>
                 ))}
               </div>
+              <ul className="uni-list" key={u.country}>
+                {u.unis.map((x) => (
+                  <li key={x}>{x}</li>
+                ))}
+              </ul>
             </div>
           ) : (
             <>
               <p className="study-text">
-                {universities}+ medical universities across {mbbs.length} countries, with fees at a glance.
+                {mbbsCount}+ medical universities across {mbbs.length} countries, with fees at a glance.
               </p>
               <div className="mbbs-tabs" role="tablist" aria-label="Countries">
                 {mbbs.map((x) => (
