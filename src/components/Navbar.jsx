@@ -3,7 +3,6 @@ import { Link, NavLink, useLocation } from 'react-router-dom'
 import { gsap, useGSAP } from '../lib/gsap'
 import { nav, company, waLink } from '../data/site'
 import Button from './Button'
-import Icon from './Icon'
 
 export function Brand({ light = false }) {
   return (
@@ -84,7 +83,8 @@ export default function Navbar() {
           <Brand />
           <nav className="nav-links" aria-label="Primary" ref={linksRef} onMouseLeave={toActive}>
             <span className="nav-pill" ref={pillRef} aria-hidden="true" />
-            {nav.map((n) => (
+            {/* Contact lives in the Connect button on desktop */}
+            {nav.filter((n) => n.to !== '/contact').map((n) => (
               <NavLink key={n.to} to={n.to} end={n.to === '/'} className="nav-link" onMouseEnter={(e) => movePill(e.currentTarget)}>
                 <span className="roll">
                   <span data-text={n.label}>{n.label}</span>
@@ -93,12 +93,8 @@ export default function Navbar() {
             ))}
           </nav>
           <div className="nav-actions">
-            <a href={company.phoneHref} className="nav-phone" data-scramble-hover="">
-              <Icon name="phone" size={16} />
-              <span data-scramble-text="">{company.phone}</span>
-            </a>
             <Button to="/contact" variant="primary" className="btn-sm nav-cta" wrapClassName="nav-cta-wrap">
-              Book consultation
+              Connect
             </Button>
             <button className={`burger ${open ? 'is-active' : ''}`} onClick={() => setOpen((o) => !o)} aria-label="Toggle menu" aria-expanded={open}>
               <span />

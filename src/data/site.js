@@ -51,6 +51,10 @@ export const company = {
   mapQuery: 'C-11/197 C-Block Yamuna Vihar Shahdara Delhi 110053',
 }
 
+// opens the visitor's mail app with a ready-written enquiry
+export const mailLink = (subject, body) =>
+  `mailto:${company.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
+
 // every form on the site posts here
 export const FORMSPREE = 'https://formspree.io/f/xdeenyry'
 

@@ -1,7 +1,7 @@
 import { useRef } from 'react'
 import useReveal from '../hooks/useReveal'
 import { Link } from 'react-router-dom'
-import { photos, services } from '../data/site'
+import { mailLink, photos, services, waLink } from '../data/site'
 import { mbbs } from '../data/mbbs'
 import Icon from '../components/Icon'
 import Button from '../components/Button'
@@ -83,9 +83,24 @@ export default function Services() {
                     <Link to="/study-abroad?p=mbbs">See universities &amp; fees</Link>
                   </p>
                 )}
-                <div data-fade="">
+                <div className="sv-actions" data-fade="">
                   <Button to={`/contact?topic=${s.id}`} variant="primary" className="btn-sm">
                     Enquire
+                  </Button>
+                  <Button href={waLink(`Hello IBM Consultancy, I'd like help with ${s.title}. Please share the details.`)} variant="ghost" icon="whatsapp" className="btn-sm" magnetic={false}>
+                    WhatsApp
+                  </Button>
+                  <Button
+                    href={mailLink(
+                      `Enquiry: ${s.title}`,
+                      `Hello IBM Consultancy,\n\nI'd like help with ${s.title}. Please share the details and next steps.\n\nName:\nPhone:\n\nThank you.`
+                    )}
+                    variant="ghost"
+                    icon="mail"
+                    className="btn-sm"
+                    magnetic={false}
+                  >
+                    Email
                   </Button>
                 </div>
               </div>

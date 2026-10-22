@@ -449,9 +449,11 @@ function ServicesRail() {
             </div>
             <div className="rail-foot">
               <div className="tags">
-                {(s.id === 'student' ? s.tags : s.tags.slice(0, 3)).map((t) => (
+                {/* three tags keep every card's photo the same height; the rest collapse into +N */}
+                {s.tags.slice(0, 3).map((t) => (
                   <span key={t}>{t}</span>
                 ))}
+                {s.tags.length > 3 && <span>+{s.tags.length - 3}</span>}
               </div>
               <span className="rail-go" aria-hidden="true">
                 <Icon name="arrowUpRight" size={18} />

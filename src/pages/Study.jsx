@@ -7,7 +7,7 @@ import { nzColleges } from '../data/nzColleges'
 import Icon from '../components/Icon'
 import Button from '../components/Button'
 import { CTA, PageHero } from '../components/Sections'
-import { waLink } from '../data/site'
+import { mailLink, waLink } from '../data/site'
 
 // every country we place students in: partner universities plus MBBS destinations
 const allCountries = [...new Set([...universities.map((u) => u.country), ...mbbs.map((m) => m.country)])]
@@ -82,9 +82,20 @@ export default function Study() {
             <div className="mbbs-panel study-panel" key={p.id}>
               <div className="mbbs-head">
                 <h2 className="h3">{p.title}</h2>
-                <Button href={waLink(`Hello IBM Consultancy, I'd like details on ${p.label} programmes abroad.`)} icon="whatsapp" className="btn-sm" magnetic={false}>
-                  Ask about {p.label}
-                </Button>
+                <div className="sv-actions">
+                  <Button href={waLink(`Hello IBM Consultancy, I'd like details on ${p.label} programmes abroad.`)} icon="whatsapp" className="btn-sm" magnetic={false}>
+                    Ask about {p.label}
+                  </Button>
+                  <Button
+                    href={mailLink(`Enquiry: ${p.label} abroad`, `Hello IBM Consultancy,\n\nI'd like details on ${p.label} programmes abroad.\n\nName:\nPhone:\nPreferred country:\n\nThank you.`)}
+                    variant="ghost"
+                    icon="mail"
+                    className="btn-sm"
+                    magnetic={false}
+                  >
+                    Email
+                  </Button>
+                </div>
               </div>
               <p className="study-text">{p.text}</p>
               <ul className="mbbs-notes">
@@ -188,9 +199,20 @@ export default function Study() {
               <div className="mbbs-panel" key={c.country}>
                 <div className="mbbs-head">
                   <h2 className="h3">MBBS in {c.country}</h2>
-                  <Button href={waLink(`Hello IBM Consultancy, I'd like details on MBBS in ${c.country}.`)} icon="whatsapp" className="btn-sm" magnetic={false}>
-                    Ask about {c.country}
-                  </Button>
+                  <div className="sv-actions">
+                    <Button href={waLink(`Hello IBM Consultancy, I'd like details on MBBS in ${c.country}.`)} icon="whatsapp" className="btn-sm" magnetic={false}>
+                      Ask about {c.country}
+                    </Button>
+                    <Button
+                      href={mailLink(`Enquiry: MBBS in ${c.country}`, `Hello IBM Consultancy,\n\nI'd like details on MBBS in ${c.country}: universities, fees and admission.\n\nName:\nPhone:\n\nThank you.`)}
+                      variant="ghost"
+                      icon="mail"
+                      className="btn-sm"
+                      magnetic={false}
+                    >
+                      Email
+                    </Button>
+                  </div>
                 </div>
 
                 {c.notes?.length > 0 && (
