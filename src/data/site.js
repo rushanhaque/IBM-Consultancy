@@ -256,3 +256,10 @@ export const faqs = [
     a: 'Yes, plus travel packages and insurance, including bookings for your visa file.',
   },
 ]
+
+// Countries offered in the contact form's destination picker (visa, study, MBBS and work destinations).
+export const countries = [
+  'Australia', 'Bangladesh', 'Belarus', 'Belgium', 'Canada', 'Dubai / UAE', 'Egypt', 'France', 'Georgia',
+  'Germany', 'Ireland', 'Italy', 'Japan', 'Kazakhstan', 'Kyrgyzstan', 'Malaysia', 'Maldives', 'Nepal',
+  'New Zealand', 'Poland', 'Russia', 'Schengen (Europe)', 'Singapore', 'United Kingdom', 'United States',
+]

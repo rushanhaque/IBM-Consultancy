@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import useReveal from '../hooks/useReveal'
-import { company, hours, services, waLink } from '../data/site'
+import { company, countries, hours, services, waLink } from '../data/site'
 import Icon from '../components/Icon'
 import Button from '../components/Button'
 import { Eyebrow, PageHero, Spotlight } from '../components/Sections'
@@ -162,7 +162,13 @@ export default function Contact() {
                     </select>
                   </Field>
                   <Field label="Destination country (optional)">
-                    <input value={form.destination} onChange={set('destination')} placeholder=" " />
+                    {/* pick from the list or type any other country */}
+                    <input value={form.destination} onChange={set('destination')} placeholder=" " list="destinations" autoComplete="off" />
+                    <datalist id="destinations">
+                      {countries.map((c) => (
+                        <option key={c} value={c} />
+                      ))}
+                    </datalist>
                   </Field>
                   <Field label="Preferred date" filled error={errors.date}>
                     <input type="date" min={today} value={form.date} onChange={set('date')} />

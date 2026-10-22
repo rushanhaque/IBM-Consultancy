@@ -584,3 +584,16 @@
 .beam.is-live::after {
   animation-play-state: running;
 }
+
+/* phones: tuck the dock away while a form field has the keyboard open */
+@media (max-width: 1023px) {
+  .dock {
+    transition: opacity 0.3s, transform 0.4s var(--ease);
+  }
+
+  body:has(input:focus, select:focus, textarea:focus) .dock {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(120%);
+  }
+}
