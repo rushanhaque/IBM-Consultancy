@@ -54,6 +54,12 @@ export const universities = [
       'University of Waikato College',
       'University of Canterbury International College (UCIC), University Transfer Program',
       'Otago Polytechnic',
+      'Yoobee College of Creative Innovation',
+      'New Zealand Management Academies (NZMA)',
+      'Auckland Institute of Studies (AIS)',
+      'New Zealand School of Tourism',
+      'Elite School of Beauty and Spa',
+      'Cut Above Academy',
     ],
   },
   {

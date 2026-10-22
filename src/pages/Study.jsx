@@ -3,6 +3,7 @@ import { useSearchParams } from 'react-router-dom'
 import useReveal from '../hooks/useReveal'
 import { mbbs } from '../data/mbbs'
 import { universities } from '../data/universities'
+import { nzColleges } from '../data/nzColleges'
 import Icon from '../components/Icon'
 import Button from '../components/Button'
 import { CTA, PageHero } from '../components/Sections'
@@ -54,6 +55,8 @@ export default function Study() {
   const [active, setActive] = useState(mbbs[0].country)
   const [uniCountry, setUniCountry] = useState(universities[0].country)
   const u = universities.find((x) => x.country === uniCountry)
+  const [college, setCollege] = useState(nzColleges[0].name)
+  const nz = nzColleges.find((x) => x.name === college)
   const p = programmes.find((x) => x.id === prog)
   const c = mbbs.find((x) => x.country === active)
 
@@ -114,6 +117,53 @@ export default function Study() {
                   <li key={x}>{x}</li>
                 ))}
               </ul>
+
+              {uniCountry === 'New Zealand' && (
+                <div className="nz-courses">
+                  <h3 className="study-sub">Courses at our NZ partner colleges</h3>
+                  <div className="mbbs-tabs" role="tablist" aria-label="New Zealand colleges">
+                    {nzColleges.map((x) => (
+                      <button
+                        key={x.name}
+                        role="tab"
+                        aria-selected={x.name === college}
+                        className={`chip ${x.name === college ? 'is-active' : ''}`}
+                        onClick={() => setCollege(x.name)}
+                      >
+                        {x.name}
+                      </button>
+                    ))}
+                  </div>
+                  {nz.note && <p className="study-text">{nz.note}</p>}
+                  <div className="mbbs-table-wrap" key={nz.name}>
+                    <table className="mbbs-table">
+                      <thead>
+                        <tr>
+                          <th scope="col">Course</th>
+                          <th scope="col">NZQA level</th>
+                          <th scope="col">Duration</th>
+                          <th scope="col">Campus</th>
+                        </tr>
+                      </thead>
+                      {nz.groups.map(([group, courses]) => (
+                        <tbody key={group}>
+                          <tr className="nz-group">
+                            <td colSpan={4}>{group}</td>
+                          </tr>
+                          {courses.map(([title, level, duration, campus]) => (
+                            <tr key={title + level}>
+                              <th scope="row">{title}</th>
+                              <td>{level}</td>
+                              <td>{duration}</td>
+                              <td>{campus}</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      ))}
+                    </table>
+                  </div>
+                </div>
+              )}
             </div>
           ) : (
             <>
