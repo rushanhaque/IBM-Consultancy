@@ -1099,10 +1099,10 @@
     min-height: 0;
   }
 
+  /* fixed share of the card, so a longer title or extra tags never shrink one photo */
   .rail-photo {
-    height: auto;
-    flex: 1 1 auto;
-    min-height: 0;
+    height: 50%;
+    flex: none;
   }
 
   .rail-num {

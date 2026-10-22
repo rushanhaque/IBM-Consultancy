@@ -153,6 +153,20 @@ export const services = [
     tags: ['Work permits', 'Family', 'PR'],
     includes: ['Eligibility assessment', 'Profile evaluation', 'End-to-end filing'],
   },
+  {
+    id: 'work',
+    icon: 'briefcase',
+    title: 'Work Placement',
+    short: 'Jobs abroad in Europe, the Gulf and Asia.',
+    long: 'Work placements and work visas across 34 countries in Europe, the Gulf and Asia, from job offer to departure.',
+    tags: [
+      'Albania', 'Belarus', 'Belgium', 'Croatia', 'Czech Republic', 'Georgia', 'Germany', 'Italy', 'Latvia', 'Lithuania',
+      'Malta', 'Luxembourg', 'Poland', 'Russia', 'Slovakia', 'Ukraine', 'Spain', 'Sweden', 'Netherlands',
+      'Bahrain', 'Kuwait', 'Oman', 'Qatar', 'Saudi Arabia', 'UAE', 'Iraq', 'Jordan',
+      'Malaysia', 'Indonesia', 'Philippines', 'Thailand', 'Singapore', 'Japan', 'Azerbaijan',
+    ],
+    includes: ['Job matching & employer offer', 'Work permit & visa filing', 'Pre-departure support'],
+  },
 ]
 
 export const process = [
@@ -201,6 +215,7 @@ const serviceImages = {
   insurance: photos.cloudsWarm,
   student: photos.graduation,
   immigration: photos.mapPassport,
+  work: photos.team,
 }
 services.forEach((s) => (s.image = serviceImages[s.id]))
 
@@ -215,7 +230,7 @@ export const marquee = [
 // PLACEHOLDER figures — replace with the firm's real numbers.
 export const stats = [
   { value: 40, suffix: '+', label: 'Destinations served' },
-  { value: 8, suffix: '', label: 'Travel & visa services' },
+  { value: 9, suffix: '', label: 'Travel & visa services' },
   { value: 24, suffix: 'h', label: 'Typical WhatsApp response' },
   { value: 1, suffix: ':1', label: 'Dedicated case manager' },
 ]
@@ -267,7 +282,10 @@ export const faqs = [
 
 // Countries offered in the contact form's destination picker (visa, study, MBBS and work destinations).
 export const countries = [
-  'Australia', 'Bangladesh', 'Belarus', 'Belgium', 'Canada', 'Dubai / UAE', 'Egypt', 'Finland', 'France', 'Georgia',
-  'Germany', 'Ireland', 'Italy', 'Japan', 'Kazakhstan', 'Kyrgyzstan', 'Malaysia', 'Maldives', 'Malta', 'Nepal', 'Netherlands',
-  'New Zealand', 'Poland', 'Russia', 'Schengen (Europe)', 'Singapore', 'Switzerland', 'United Kingdom', 'United States',
+  'Albania', 'Australia', 'Azerbaijan', 'Bahrain', 'Bangladesh', 'Belarus', 'Belgium', 'Canada', 'Croatia',
+  'Czech Republic', 'Dubai / UAE', 'Egypt', 'Finland', 'France', 'Georgia', 'Germany', 'Indonesia', 'Iraq',
+  'Ireland', 'Italy', 'Japan', 'Jordan', 'Kazakhstan', 'Kuwait', 'Kyrgyzstan', 'Latvia', 'Lithuania', 'Luxembourg',
+  'Malaysia', 'Maldives', 'Malta', 'Nepal', 'Netherlands', 'New Zealand', 'Oman', 'Philippines', 'Poland', 'Qatar',
+  'Russia', 'Saudi Arabia', 'Schengen (Europe)', 'Singapore', 'Slovakia', 'Spain', 'Sweden', 'Switzerland',
+  'Thailand', 'Ukraine', 'United Kingdom', 'United States',
 ]

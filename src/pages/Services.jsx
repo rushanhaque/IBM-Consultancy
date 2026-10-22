@@ -18,7 +18,7 @@ export default function Services() {
       <PageHero
         eyebrow="Our services"
         title="Services built around *your journey.*"
-        text="Eight services. One team. Zero paperwork stress."
+        text="Nine services. One team. Zero paperwork stress."
         image={photos.tarmac}
         imageAlt="Aircraft on an airport apron at dusk"
       >
@@ -54,9 +54,10 @@ export default function Services() {
                   <Icon name={s.icon} size={30} stroke={1.3} />
                 </span>
                 <div className="sv-tags">
-                  {s.tags.map((t) => (
+                  {s.tags.slice(0, 6).map((t) => (
                     <span key={t}>{t}</span>
                   ))}
+                  {s.tags.length > 6 && <span>+{s.tags.length - 6}</span>}
                 </div>
               </Link>
               <div className="sv-copy">
@@ -77,6 +78,11 @@ export default function Services() {
                     </li>
                   ))}
                 </ul>
+                {s.id === 'work' && (
+                  <p className="sv-mbbs" data-fade="">
+                    <strong>Countries:</strong> {s.tags.join(' · ')}.
+                  </p>
+                )}
                 {s.id === 'student' && (
                   <p className="sv-mbbs" data-fade="">
                     <strong>MBBS abroad:</strong> {mbbs.map((m) => m.country).join(' · ')}.{' '}
