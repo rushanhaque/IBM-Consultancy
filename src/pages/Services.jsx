@@ -80,7 +80,7 @@ export default function Services() {
                 {s.id === 'student' && (
                   <p className="sv-mbbs" data-fade="">
                     <strong>MBBS abroad:</strong> {mbbs.map((m) => m.country).join(' · ')}.{' '}
-                    <Link to="/mbbs-abroad">See universities &amp; fees</Link>
+                    <Link to="/study-abroad?p=mbbs">See universities &amp; fees</Link>
                   </p>
                 )}
                 <div data-fade="">

@@ -1,5 +1,5 @@
 import { Component, lazy, Suspense, useEffect, useLayoutEffect, useRef, useState } from 'react'
-import { Route, Routes, useLocation } from 'react-router-dom'
+import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
 import { gsap, intro, ScrollTrigger, useGSAP } from './lib/gsap'
 import { AppContext } from './lib/appContext'
 import useLenis from './hooks/useLenis'
@@ -19,7 +19,7 @@ const loaders = {
   '/services': () => import('./pages/Services'),
   '/about': () => import('./pages/About'),
   '/contact': () => import('./pages/Contact'),
-  '/mbbs-abroad': () => import('./pages/Mbbs'),
+  '/study-abroad': () => import('./pages/Study'),
   '*': () => import('./pages/NotFound'),
 }
 // After a new deploy, an already-open tab may ask for old chunk filenames. On navigation,
@@ -41,7 +41,7 @@ const Home = lazy(fresh(loaders['/']))
 const Services = lazy(fresh(loaders['/services']))
 const About = lazy(fresh(loaders['/about']))
 const Contact = lazy(fresh(loaders['/contact']))
-const Mbbs = lazy(fresh(loaders['/mbbs-abroad']))
+const Study = lazy(fresh(loaders['/study-abroad']))
 const NotFound = lazy(fresh(loaders['*']))
 const loaderFor = (path) => loaders[path] || loaders['*']
 
@@ -81,7 +81,7 @@ const pages = {
   '/services': { title: 'Services — IBM Consultancy', label: 'Services', code: 'SRV' },
   '/about': { title: 'About — IBM Consultancy', label: 'About', code: 'ABT' },
   '/contact': { title: 'Contact & Book — IBM Consultancy', label: 'Contact', code: 'CNT' },
-  '/mbbs-abroad': { title: 'MBBS Abroad — IBM Consultancy', label: 'MBBS', code: 'MED' },
+  '/study-abroad': { title: 'Study Abroad — IBM Consultancy', label: 'Study', code: 'EDU' },
 }
 const pageOf = (p) => pages[p] || { title: 'IBM Consultancy', label: 'Lost', code: '404' }
 
@@ -249,7 +249,9 @@ export default function App() {
             <Route path="/services" element={<Services />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
-            <Route path="/mbbs-abroad" element={<Mbbs />} />
+            <Route path="/study-abroad" element={<Study />} />
+            {/* old link, kept so shared URLs still land on the MBBS tables */}
+            <Route path="/mbbs-abroad" element={<Navigate to="/study-abroad?p=mbbs" replace />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
           <BootDone />

@@ -67,7 +67,7 @@ export const hours = [
 export const nav = [
   { to: '/', label: 'Home' },
   { to: '/services', label: 'Services' },
-  { to: '/mbbs-abroad', label: 'MBBS Abroad' },
+  { to: '/study-abroad', label: 'Study Abroad' },
   { to: '/about', label: 'About' },
   { to: '/contact', label: 'Contact' },
 ]
