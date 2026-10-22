@@ -44,11 +44,15 @@ export const company = {
   ceo: 'Abdul Rehman',
   tagline: 'Immigration & Visa Services',
   phone: '+91 93112 24584',
+  email: 'info@ibmconsultancy.com',
   phoneHref: 'tel:+919311224584',
   whatsapp: '919311224584',
   address: ['C-11/197 G/F, C-Block Yamuna Vihar', 'Shahdara, Delhi 110053'],
   mapQuery: 'C-11/197 C-Block Yamuna Vihar Shahdara Delhi 110053',
 }
+
+// every form on the site posts here
+export const FORMSPREE = 'https://formspree.io/f/xdeenyry'
 
 export const waLink = (text = 'Hello IBM Consultancy, I would like to book a consultation.') =>
   `https://wa.me/${company.whatsapp}?text=${encodeURIComponent(text)}`

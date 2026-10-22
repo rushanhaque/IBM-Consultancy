@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import useReveal from '../hooks/useReveal'
-import { company, countries, hours, services, waLink } from '../data/site'
+import { FORMSPREE, company, countries, hours, services, waLink } from '../data/site'
 import Icon from '../components/Icon'
 import Button from '../components/Button'
 import { Eyebrow, PageHero, Spotlight } from '../components/Sections'
@@ -82,7 +82,12 @@ export default function Contact() {
     setErrors((er) => ({ ...er, [k]: undefined }))
   }
 
-  const submit = (e) => {
+  const [sending, setSending] = useState(false)
+  const [failed, setFailed] = useState(false)
+  // kept for the "also send on WhatsApp" button on the thank-you screen
+  const waText = useRef('')
+
+  const submit = async (e) => {
     e.preventDefault()
     const er = {}
     if (form.name.trim().length < 2) er.name = 'Please enter your name'
@@ -104,8 +109,30 @@ export default function Contact() {
         : null,
       form.message ? `Message: ${form.message}` : null,
     ].filter((l) => l !== null)
-    window.open(waLink(lines.join('\n')), '_blank', 'noopener')
-    setSent(true)
+    waText.current = lines.join('\n')
+    setSending(true)
+    setFailed(false)
+    try {
+      const res = await fetch(FORMSPREE, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          _subject: `Consultation request: ${label} (${form.name})`,
+          name: form.name,
+          phone: form.phone,
+          service: label,
+          destination: form.destination || '—',
+          preferred_date: form.date || '—',
+          message: form.message || '—',
+        }),
+      })
+      if (!res.ok) throw new Error(String(res.status))
+      setSent(true)
+    } catch {
+      setFailed(true)
+    } finally {
+      setSending(false)
+    }
   }
 
   // Google Maps is ~400KB of third-party code: only load it as the map nears the screen
@@ -148,14 +175,19 @@ export default function Contact() {
                 <span className="done-icon">
                   <Icon name="check" size={30} stroke={2} />
                 </span>
-                <h3 className="h3">Almost there.</h3>
+                <h3 className="h3">Request received.</h3>
                 <p>
-                  We’ve opened WhatsApp with your booking details — just press send. Prefer to talk? Call us on{' '}
-                  <a href={company.phoneHref}>{company.phone}</a>.
+                  Thanks, {form.name.split(' ')[0]}. We’ll get back to you shortly to confirm your slot. Need it sooner? Call{' '}
+                  <a href={company.phoneHref}>{company.phone}</a> or email <a href={`mailto:${company.email}`}>{company.email}</a>.
                 </p>
-                <Button variant="ghost" icon="arrowLeft" onClick={() => setSent(false)} magnetic={false}>
-                  Back to form
-                </Button>
+                <div className="form-done-actions">
+                  <Button href={waLink(waText.current)} icon="whatsapp" magnetic={false}>
+                    Also send on WhatsApp
+                  </Button>
+                  <Button variant="ghost" icon="arrowLeft" onClick={() => setSent(false)} magnetic={false}>
+                    Back to form
+                  </Button>
+                </div>
               </div>
             ) : (
               <form onSubmit={submit} noValidate ref={formRef}>
@@ -189,12 +221,21 @@ export default function Contact() {
                   </Field>
                 </div>
                 <div className="form-foot">
-                  <Button type="submit" icon="whatsapp" magnetic={false}>
-                    Send via WhatsApp
+                  <Button type="submit" magnetic={false} disabled={sending}>
+                    {sending ? 'Sending…' : 'Send request'}
                   </Button>
                   <span className="form-note">
                     <Icon name="shield" size={15} /> Your details are only used to arrange your consultation.
                   </span>
+                  {failed && (
+                    <p className="form-fail" role="alert">
+                      Couldn’t send just now. Please try again, or reach us on{' '}
+                      <a href={waLink()} target="_blank" rel="noreferrer">
+                        WhatsApp
+                      </a>{' '}
+                      or <a href={`mailto:${company.email}`}>{company.email}</a>.
+                    </p>
+                  )}
                 </div>
               </form>
             )}
@@ -219,6 +260,16 @@ export default function Contact() {
                 <span>
                   <small>Message us</small>
                   <strong>WhatsApp chat</strong>
+                </span>
+                <Icon name="arrowUpRight" size={18} className="c-go" />
+              </Spotlight>
+              <Spotlight as="a" href={`mailto:${company.email}`} className="c-card" data-draw="">
+                <span className="c-icon">
+                  <Icon name="mail" size={20} />
+                </span>
+                <span>
+                  <small>Email us</small>
+                  <strong>{company.email}</strong>
                 </span>
                 <Icon name="arrowUpRight" size={18} className="c-go" />
               </Spotlight>

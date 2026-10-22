@@ -1567,3 +1567,21 @@
   color: var(--blue);
   background: transparent;
 }
+
+.form-done-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.form-fail {
+  flex-basis: 100%;
+  margin: 4px 0 0;
+  font-size: 14px;
+  color: #c62f2f;
+}
+
+.form-fail a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}

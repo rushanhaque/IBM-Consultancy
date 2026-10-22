@@ -68,6 +68,10 @@ export default function Footer() {
                 </a>
               </li>
               <li>
+                <Icon name="mail" size={15} />
+                <a href={`mailto:${company.email}`}>{company.email}</a>
+              </li>
+              <li>
                 <Icon name="pin" size={15} />
                 <span>
                   {company.address[0]}
