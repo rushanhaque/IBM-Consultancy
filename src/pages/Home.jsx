@@ -306,6 +306,7 @@ function WindowReveal() {
             <span>Travel insurance</span>
             <span>Study abroad</span>
             <span>Immigration</span>
+            <span>Work placement</span>
           </div>
         </div>
       </div>
