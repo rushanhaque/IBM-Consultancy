@@ -2,8 +2,8 @@
 // scripts/seo-pages.mjs, which writes a pre-filled HTML file per page at build time so
 // Google and link previews see the right title, description and structured data without JS.
 
-// The live address. Change this one line when the site moves to its own domain.
-export const SITE_URL = 'https://ibm-consultancy.vercel.app'
+// The live address (the site's own domain). Every canonical URL, the sitemap and share links use it.
+export const SITE_URL = 'https://www.ibmconsultancy.com'
 
 export const OG_IMAGE = `${SITE_URL}/og-image.jpg`
 
