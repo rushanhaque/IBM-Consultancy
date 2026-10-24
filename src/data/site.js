@@ -185,6 +185,7 @@ export const services = [
       'Barback',
       'Waiter',
       'Hotel management',
+      'Head chef',
       'General labour',
       'Warehouse worker',
       'Driver',
@@ -250,6 +251,18 @@ const serviceImages = {
   work: photos.team,
 }
 services.forEach((s) => (s.image = serviceImages[s.id]))
+
+// Second dropdown in the booking form: the kind of help needed within a service.
+export const serviceTypes = {
+  visa: {
+    label: 'Visa type',
+    options: ['Tourist visa: single entry', 'Tourist visa: multiple entry', 'Business visa', 'Study visa', 'Work visa'],
+  },
+  passport: { label: 'Application type', options: ['Fresh issue', 'Re-issue', 'Tatkal'] },
+  insurance: { label: 'Insurance provider', options: ['ICICI Lombard', 'Bajaj Allianz'] },
+  student: { label: 'Programme', options: ["Bachelor's", "Master's", 'MBBS', 'Diploma', 'PhD'] },
+  work: { label: 'Job role', options: services.find((s) => s.id === 'work').roles },
+}
 
 const processImages = [photos.consultation, photos.checklist, photos.signing, photos.landing]
 process.forEach((p, i) => (p.image = processImages[i]))

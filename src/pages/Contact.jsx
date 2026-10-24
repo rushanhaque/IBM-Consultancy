@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import useReveal from '../hooks/useReveal'
-import { FORMSPREE, company, countries, hours, offices, services, waLink } from '../data/site'
+import { FORMSPREE, company, countries, hours, offices, serviceTypes, services, waLink } from '../data/site'
 import Icon from '../components/Icon'
 import Button from '../components/Button'
 import { PageHero, Spotlight } from '../components/Sections'
@@ -39,6 +39,7 @@ export default function Contact() {
     name: '',
     phone: '',
     service: options.some((o) => o.value === initial) ? initial : '',
+    type: '',
     destination: '',
     date: '',
     message: '',
@@ -47,7 +48,7 @@ export default function Contact() {
 
   // a new ?service= link while already on this page (same route, no remount) should still preselect
   useEffect(() => {
-    if (options.some((o) => o.value === initial)) setForm((f) => ({ ...f, service: initial }))
+    if (options.some((o) => o.value === initial)) setForm((f) => ({ ...f, service: initial, type: '' }))
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [initial])
 
@@ -77,8 +78,10 @@ export default function Contact() {
   }, [])
   const [sent, setSent] = useState(false)
 
+  const types = serviceTypes[form.service]
   const set = (k) => (e) => {
-    setForm((f) => ({ ...f, [k]: e.target.value }))
+    // a new service has its own list of types, so clear the old choice
+    setForm((f) => ({ ...f, [k]: e.target.value, ...(k === 'service' ? { type: '' } : null) }))
     setErrors((er) => ({ ...er, [k]: undefined }))
   }
 
@@ -93,6 +96,7 @@ export default function Contact() {
     if (form.name.trim().length < 2) er.name = 'Please enter your name'
     if (!/^[+\d][\d\s-]{7,}$/.test(form.phone.trim())) er.phone = 'Please enter a valid phone number'
     if (!form.service) er.service = 'Please choose a service'
+    if (types && !form.type) er.type = `Please choose a ${types.label.toLowerCase()}`
     if (form.date && form.date < today) er.date = 'Please pick today or a later date'
     setErrors(er)
     if (Object.keys(er).length) return
@@ -103,6 +107,7 @@ export default function Contact() {
       `Name: ${form.name}`,
       `Phone: ${form.phone}`,
       `Service: ${label}`,
+      form.type ? `${types.label}: ${form.type}` : null,
       form.destination ? `Destination: ${form.destination}` : null,
       form.date
         ? `Preferred date: ${new Date(`${form.date}T00:00:00`).toLocaleDateString('en-IN', { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' })}`
@@ -117,10 +122,11 @@ export default function Contact() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
         body: JSON.stringify({
-          _subject: `Consultation request: ${label} (${form.name})`,
+          _subject: `Consultation request: ${label}${form.type ? ` · ${form.type}` : ''} (${form.name})`,
           name: form.name,
           phone: form.phone,
           service: label,
+          type: form.type || '—',
           destination: form.destination || '—',
           preferred_date: form.date || '—',
           message: form.message || '—',
@@ -195,6 +201,18 @@ export default function Contact() {
                       ))}
                     </select>
                   </Field>
+                  {types && (
+                    <Field label={types.label} error={errors.type} wide select filled={!!form.type}>
+                      <select value={form.type} onChange={set('type')}>
+                        <option value="" disabled hidden />
+                        {types.options.map((o) => (
+                          <option key={o} value={o}>
+                            {o}
+                          </option>
+                        ))}
+                      </select>
+                    </Field>
+                  )}
                   <CountryField value={form.destination} onChange={(v) => setForm((f) => ({ ...f, destination: v }))} />
                   <Field label="Preferred date" filled error={errors.date}>
                     <input type="date" min={today} value={form.date} onChange={set('date')} />
