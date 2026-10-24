@@ -45,6 +45,8 @@ export const company = {
   tagline: 'Immigration & Visa Services',
   phone: '+91 93112 24584',
   email: 'info@ibmconsultancy.com',
+  instagram: 'https://www.instagram.com/ibm.consultancy/',
+  instagramHandle: '@ibm.consultancy',
   phoneHref: 'tel:+919311224584',
   whatsapp: '919311224584',
   address: ['C-11/197 G/F, C-Block Yamuna Vihar', 'Shahdara, Delhi 110053'],

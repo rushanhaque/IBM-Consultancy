@@ -122,6 +122,9 @@ export default function Navbar() {
             <a href={waLink()} target="_blank" rel="noreferrer">
               WhatsApp us
             </a>
+            <a href={company.instagram} target="_blank" rel="noreferrer">
+              Instagram {company.instagramHandle}
+            </a>
             {offices.map((o) => (
               <p key={o.label}>{o.lines.join(', ')}</p>
             ))}

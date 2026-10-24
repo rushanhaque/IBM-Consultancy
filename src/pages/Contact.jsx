@@ -264,6 +264,16 @@ export default function Contact() {
                 </span>
                 <Icon name="arrowUpRight" size={18} className="c-go" />
               </Spotlight>
+              <Spotlight as="a" href={company.instagram} target="_blank" rel="noreferrer" className="c-card" data-draw="">
+                <span className="c-icon">
+                  <Icon name="instagram" size={20} />
+                </span>
+                <span>
+                  <small>Follow us</small>
+                  <strong>{company.instagramHandle}</strong>
+                </span>
+                <Icon name="arrowUpRight" size={18} className="c-go" />
+              </Spotlight>
               <Spotlight as="a" href={`mailto:${company.email}`} className="c-card" data-draw="">
                 <span className="c-icon">
                   <Icon name="mail" size={20} />

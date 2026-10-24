@@ -10,6 +10,7 @@ import Preloader from './components/Preloader'
 import MobileDock from './components/MobileDock'
 import Icon from './components/Icon'
 import { waLink } from './data/site'
+import { applyMeta } from './lib/meta'
 import { fontsReady } from './lib/fonts'
 
 // Each page is its own chunk: the first visit downloads only what it shows,
@@ -77,13 +78,13 @@ class RouteBoundary extends Component {
 }
 
 const pages = {
-  '/': { title: 'IBM Consultancy — Immigration, Passport & Visa Services in Delhi', label: 'Home', code: 'DEL' },
-  '/services': { title: 'Services — IBM Consultancy', label: 'Services', code: 'SRV' },
-  '/about': { title: 'About — IBM Consultancy', label: 'About', code: 'ABT' },
-  '/contact': { title: 'Contact & Book — IBM Consultancy', label: 'Contact', code: 'CNT' },
-  '/study-abroad': { title: 'Study Abroad — IBM Consultancy', label: 'Study', code: 'EDU' },
+  '/': { label: 'Home', code: 'DEL' },
+  '/services': { label: 'Services', code: 'SRV' },
+  '/about': { label: 'About', code: 'ABT' },
+  '/contact': { label: 'Contact', code: 'CNT' },
+  '/study-abroad': { label: 'Study', code: 'EDU' },
 }
-const pageOf = (p) => pages[p] || { title: 'IBM Consultancy', label: 'Lost', code: '404' }
+const pageOf = (p) => pages[p] || { label: 'Lost', code: '404' }
 
 // The preloader is a first-impression moment: show it once per browser session.
 const seenIntro = (() => {
@@ -116,7 +117,7 @@ export default function App() {
 
   useEffect(() => {
     if ('scrollRestoration' in history) history.scrollRestoration = 'manual'
-    document.title = pageOf(location.pathname).title
+    applyMeta(location.pathname)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -189,7 +190,7 @@ export default function App() {
           window.__lenis?.scrollTo(0, { immediate: true, force: true })
           window.scrollTo(0, 0)
           setShown(location)
-          document.title = next.title
+          applyMeta(location.pathname)
           t.resume()
         })
       })

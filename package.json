@@ -5,10 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && node scripts/seo-pages.mjs",
     "preview": "vite preview",
     "build:assets": "node scripts/build-land-dots.mjs && node scripts/optimize-images.mjs",
-    "build:map": "node scripts/build-contact-map.mjs"
+    "build:map": "node scripts/build-contact-map.mjs",
+    "build:og": "node scripts/build-og-image.mjs"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",

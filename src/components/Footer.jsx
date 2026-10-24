@@ -68,6 +68,12 @@ export default function Footer() {
                 </a>
               </li>
               <li>
+                <Icon name="instagram" size={15} />
+                <a href={company.instagram} target="_blank" rel="noreferrer">
+                  {company.instagramHandle}
+                </a>
+              </li>
+              <li>
                 <Icon name="mail" size={15} />
                 <a href={`mailto:${company.email}`}>{company.email}</a>
               </li>
